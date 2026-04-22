@@ -1,0 +1,283 @@
+{
+  "KIRA_CH1_THORNWICK": {
+    "id": "KIRA_CH1_THORNWICK",
+    "character": "KIRA",
+    "description": "The rain falls in sheets, soaking through your threadbare cloak. Behind you, the cottage burns—your safe haven of eight years, reduced to smoking timber. Flames reflect in the puddles, orange and violent against the grey dawn.\n\nYou don't look back. Looking back is how they catch you.\n\nYour satchel holds everything: three books of void magic written in your mother's hand, a locket with her portrait, and a map of Crownhaven you memorized years ago.\n\nThe crown piece waits in the catacombs beneath the old imperial palace. Your parents died protecting that secret.",
+    "choices": [
+      {"letter": "A", "text": "Take the King's Road", "leads_to": "KIRA_CH1_KINGS_ROAD", "effects": {"intelligence": 1}, "requires": null},
+      {"letter": "B", "text": "Cut through the Ashen Marches", "leads_to": "KIRA_CH1_MARCHES", "effects": {"dexterity": 1}, "requires": null},
+      {"letter": "C", "text": "Seek the Circle of Mages", "leads_to": "KIRA_CH1_CIRCLE", "effects": {"intelligence": 2}, "requires": null}
+    ]
+  },
+  "KIRA_CH1_KINGS_ROAD": {
+    "id": "KIRA_CH1_KINGS_ROAD",
+    "character": "KIRA",
+    "description": "The King's Road stretches ahead, mud churned by centuries of carts and cavalry. You walk in disguise—a peasant girl, dirt on your face, calluses faked on your hands.\n\nYour fingers itch with the urge to reach for the void. Eight years of hiding your nature. The magic sits coiled in your chest like a sleeping serpent, waiting.\n\nNear Millbrook, you smell the caravan before you see it: horse sweat, rope, the copper tang of fear.\n\nThree bandits have cornered a merchant wagon against a ditch. The merchant pleads—something about his daughter, his wife.\n\nThe void whispers to you.",
+    "choices": [
+      {"letter": "A", "text": "Let the void answer", "leads_to": "KIRA_CH1_BANDITS", "effects": {"void_magic": 1, "humanity": -1}, "requires": null},
+      {"letter": "B", "text": "Help subtly", "leads_to": "KIRA_CH1_BANDITS", "effects": {"charisma": 1}, "requires": null},
+      {"letter": "C", "text": "Keep walking", "leads_to": "KIRA_CH1_BANDITS", "effects": {"humanity": 1}, "requires": null}
+    ]
+  },
+  "KIRA_CH1_MARCHES": {
+    "id": "KIRA_CH1_MARCHES",
+    "character": "KIRA",
+    "description": "The Ashen Marches stretch before you—a wasteland where the old world died. The ground crunches with ash, and the air tastes of sulfur and regret.\n\nYou see them in the distance: half-formed things, twisted creatures that emerged from the Sundering. They watch you with eyes that hold no light.\n\nThe Watch guards the border—mercenary knights paid to kill what crawls from the Waste. They could help you. Or they could take everything.\n\nA child cries somewhere in the darkness. Abandoned. Alone.\n\nThe void pulses in your veins, demanding to be used.",
+    "choices": [
+      {"letter": "A", "text": "Use magic to save the child", "leads_to": "KIRA_CH1_CHILD", "effects": {"void_magic": 1, "humanity": -1}, "requires": null},
+      {"letter": "B", "text": "Alert the Watch", "leads_to": "KIRA_CH1_WATCH", "effects": {"charisma": 1}, "requires": null},
+      {"letter": "C", "text": "Keep moving—survival first", "leads_to": "KIRA_CH1_WASTELAND", "effects": {"dexterity": 1}, "requires": null}
+    ]
+  },
+  "KIRA_CH1_CIRCLE": {
+    "id": "KIRA_CH1_CIRCLE",
+    "character": "KIRA",
+    "description": "The Circle of Mages hides in plain sight—a tower that appears different to each observer. You climb the stairs, each step taking you further from the world you knew.\n\nThe Archmage awaits at the top. An ageless woman with silver hair and eyes that see through time.\n\n'We know who you are, Kira Nightwind,' she says. 'We felt your void magic from across the kingdom.'\n\nShe knows about the crown. About your parents. About the Cult.\n\n'We can help you,' she offers. 'But the price is your service.'",
+    "choices": [
+      {"letter": "A", "text": "Accept their help", "leads_to": "KIRA_CH1_OFFER", "effects": {"void_magic": 2}, "requires": null},
+      {"letter": "B", "text": "Refuse—go it alone", "leads_to": "KIRA_CH1_KINGS_ROAD", "effects": {"intelligence": 1}, "requires": null},
+      {"letter": "C", "text": "Ask about the crown first", "leads_to": "KIRA_CH1_TRUTH", "effects": {"intelligence": 2}, "requires": null}
+    ]
+  },
+  "KIRA_CH1_BANDITS": {
+    "id": "KIRA_CH1_BANDITS",
+    "character": "KIRA",
+    "description": "Three bandits. One merchant wagon. A family pleading for their lives.\n\nThe void surges within you—a tide of darkness that wants to be released. You've hidden for eight years. Fed on scraps. Pretended to be nothing.\n\nNo more.\n\nYour fingers blur with shadows. The first bandit falls before he understands what's happening. The second turns to run, but shadows wrap around his throat.\n\nThe third kneels, trembling. 'Mercy,' he whimpers. 'We're with the Cult—we were just—'\n\nThe Cult. They're already here.",
+    "choices": [
+      {"letter": "A", "text": "Kill them all", "leads_to": "KIRA_CH1_AFTERMATH", "effects": {"void_magic": 1, "humanity": -2}, "requires": null},
+      {"letter": "B", "text": "Spare one for information", "leads_to": "KIRA_CH1_INTERROGATE", "effects": {"intelligence": 1}, "requires": null},
+      {"letter": "C", "text": "Let them go", "leads_to": "KIRA_CH1_AFTERMATH", "effects": {"humanity": 1}, "requires": null}
+    ]
+  },
+  "KIRA_CH1_CHILD": {
+    "id": "KIRA_CH1_CHILD",
+    "character": "KIRA",
+    "description": "The child is a boy, no more than six. Hollow eyes stare from a face too thin, too old for his years.\n\n'Don't hurt me,' he whispers. 'Please.'\n\nYou reach out with the void—not to harm, but to shield. Shadows wrap around him like a blanket, warm and safe. The creatures of the Waste recoil from the darkness.\n\nWhen you remove your hands, something has changed. The boy looks at you with wonder, not fear.\n\n'You're like me,' he says. 'The shadows listen to you.'\n\nAnd then you feel it: the void within him, small but real. He's one of you.",
+    "choices": [
+      {"letter": "A", "text": "Take him to the Circle", "leads_to": "KIRA_CH1_ORPHAN", "effects": {"charisma": 2}, "requires": null},
+      {"letter": "B", "text": "Leave him with the Watch", "leads_to": "KIRA_CH1_KINGS_ROAD", "effects": {"humanity": 1}, "requires": null},
+      {"letter": "C", "text": "Teach him to survive", "leads_to": "KIRA_CH1_MARCHES", "effects": {"void_magic": 1}, "requires": null}
+    ]
+  },
+  "KIRA_CH1_WATCH": {
+    "id": "KIRA_CH1_WATCH",
+    "character": "KIRA",
+    "description": "The Watch is everything the kingdoms pretend not to know—a wall of steel and sacrifice against the dying world.\n\nTheir commander is a scarred woman named Voss. She looks at you with knowing eyes.\n\n'A Nightwind,' she says. 'We wondered when you'd show.'\n\nShe knows your family. Your legacy. The burden you carry.\n\n'The Cult is moving,' she continues. 'All seven pieces of Aethon's crown. They're going to reunite them at the Temple of the Void. And when they do...'\n\nShe doesn't finish. She doesn't have to.",
+    "choices": [
+      {"letter": "A", "text": "Join the Watch", "leads_to": "KIRA_CH1_WATCH_MEMBER", "effects": {"combat": 1}, "requires": null},
+      {"letter": "B", "text": "Take information and leave", "leads_to": "KIRA_CH1_KINGS_ROAD", "effects": {"intelligence": 2}, "requires": null},
+      {"letter": "C", "text": "Ask about your parents", "leads_to": "KIRA_CH1_PARENTS", "effects": {"intelligence": 1}, "requires": null}
+    ]
+  },
+  "KIRA_CH1_WASTELAND": {
+    "id": "KIRA_CH1_WASTELAND",
+    "character": "KIRA",
+    "description": "You walk through the wasteland for three days. The ash never stops falling. The sky is permanently grey, as if the sun itself died with the Void Kingdom.\n\nOn the second night, you find the skeleton of a giant—something from the old world. Its bones are black as coal, and when you touch them, you feel the void pulse.\n\nThere's power here. Ancient, terrible power.\n\nAnd something else: a piece of the crown, embedded in the skeleton's chest. It calls to you like a voice from a nightmare.\n\nThe first piece. Just... sitting there. Waiting.",
+    "choices": [
+      {"letter": "A", "text": "Take the crown piece", "leads_to": "KIRA_CH1_CROWN_FIRST", "effects": {"void_magic": 2, "humanity": -1}, "requires": null},
+      {"letter": "B", "text": "Leave it—too dangerous", "leads_to": "KIRA_CH1_KINGS_ROAD", "effects": {"humanity": 1}, "requires": null},
+      {"letter": "C", "text": "Study it first", "leads_to": "KIRA_CH1_STUDY", "effects": {"intelligence": 2}, "requires": null}
+    ]
+  },
+  "KIRA_CH1_OFFER": {
+    "id": "KIRA_CH1_OFFER",
+    "character": "KIRA",
+    "description": "The Archmage's offer is simple: serve the Circle for five years, and they will help you destroy the Cult.\n\nBut you see the truth in her eyes. They don't want to destroy the crown—they want to control it.\n\n'Your parents made the same choice,' she says. 'They served us, then betrayed us. Look where it got them.'\n\nYour parents served the Circle? The thought makes your stomach turn.\n\n'Accept our help,' she presses, 'or walk away. But know this: the Cult already knows you're alive. They know where you're going. And they have more mages than you can imagine.'",
+    "choices": [
+      {"letter": "A", "text": "Accept the offer", "leads_to": "KIRA_CH1_CIRCLE_SERVICE", "effects": {"void_magic": 1}, "requires": null},
+      {"letter": "B", "text": "Reject them—you'll find your own way", "leads_to": "KIRA_CH1_KINGS_ROAD", "effects": {"intelligence": 1}, "requires": null},
+      {"letter": "C", "text": "Demand the full truth", "leads_to": "KIRA_CH1_TRUTH", "effects": {"intelligence": 2}, "requires": null}
+    ]
+  },
+  "KIRA_CH1_TRUTH": {
+    "id": "KIRA_CH1_TRUTH",
+    "character": "KIRA",
+    "description": "The Archmage tells you everything.\n\nThe crown was Aethon's power—seven pieces, each containing a fragment of the first silence. When united, they could unmake reality itself.\n\nYour parents were guardians—chosen to protect the pieces. When the Cult came for them, they hid one piece in you. Literally, within your soul.\n\n'That's why they can find you,' the Archmage says. 'The piece calls to its brothers. And the Cult hears its voice.'\n\nYou have a piece of the crown inside you. And it's been calling the Cult since the day you were born.",
+    "choices": [
+      {"letter": "A", "text": "Let the Circle remove it", "leads_to": "KIRA_CH1_CIRCLE_SERVICE", "effects": {"void_magic": -1}, "requires": null},
+      {"letter": "B", "text": "Use it as a weapon", "leads_to": "KIRA_CH1_KINGS_ROAD", "effects": {"void_magic": 2}, "requires": null},
+      {"letter": "C", "text": "Learn to control it", "leads_to": "KIRA_CH1_TRAIN", "effects": {"void_magic": 1}, "requires": null}
+    ]
+  },
+  "KIRA_CH1_INTERROGATE": {
+    "id": "KIRA_CH1_INTERROGATE",
+    "character": "KIRA",
+    "description": "You keep one bandit alive—make him talk.\n\nThe Cult has been hunting Nightwinds for generations. Your family was the last. They killed your parents eight years ago, but missed you.\n\n'Vespera will want to know you're alive,' the bandit gasps. 'She'll send the Hollow Knights. The seven pieces must be united at the Temple—'\n\nHe dies before saying more. But you know now: Vespera. The Temple. The seven pieces.\n\nThis is bigger than revenge. This is the end of the world.",
+    "choices": [
+      {"letter": "A", "text": "Head straight for the Temple", "leads_to": "KIRA_CH2_CROWNHAVEN", "effects": {"void_magic": 1}, "requires": null},
+      {"letter": "B", "text": "Gather allies first", "leads_to": "KIRA_CH2_PREPARE", "effects": {"charisma": 1}, "requires": null},
+      {"letter": "C", "text": "Find out about Vespera", "leads_to": "KIRA_CH2_VESPERA", "effects": {"intelligence": 2}, "requires": null}
+    ]
+  },
+  "KIRA_CH1_AFTERMATH": {
+    "id": "KIRA_CH1_AFTERMATH",
+    "character": "KIRA",
+    "description": "The merchant is grateful. He offers you a ride to Crownhaven, and something more: information.\n\n'I know about the Cult,' he whispers. 'I used to trade with them—until I saw what they do to children. They want to reunite the crown—bring back the Void Kingdom. But there's something worse waiting to be freed.'\n\nHe gives you a symbol—a silver crescent. 'The Circle of Mages. Find them. They'll help you, even if the world won't.'\n\nYou take the road to Crownhaven, the symbol heavy in your pocket, the void heavy in your soul.",
+    "choices": [
+      {"letter": "A", "text": "Go directly to Crownhaven", "leads_to": "KIRA_CH2_CROWNHAVEN", "effects": {"intelligence": 1}, "requires": null},
+      {"letter": "B", "text": "Visit the Circle first", "leads_to": "KIRA_CH2_CIRCLE", "effects": {"void_magic": 2}, "requires": null},
+      {"letter": "C", "text": "Study the symbol", "leads_to": "KIRA_CH2_STUDY", "effects": {"intelligence": 2}, "requires": null}
+    ]
+  },
+  "KIRA_CH1_ORPHAN": {
+    "id": "KIRA_CH1_ORPHAN",
+    "character": "KIRA",
+    "description": "The Circle accepts the boy. They see the void in him—another potential weapon against the Cult.\n\nBut they want you to train him. To pass on what you know. To become a teacher when you wanted only to survive.\n\n'He has talent,' the Archmage says. 'But so did your parents. And we all know how that ended.'\n\nYou train the boy for three months. His name is Tom. He's afraid of the dark but fascinated by it. Just like you once were.\n\nWhen you finally leave for Crownhaven, he cries. And you realize: you've started a chain that might outlast you.",
+    "choices": [
+      {"letter": "A", "text": "Leave him to his destiny", "leads_to": "KIRA_CH2_CROWNHAVEN", "effects": {"humanity": -1}, "requires": null},
+      {"letter": "B", "text": "Take him with you", "leads_to": "KIRA_CH2_COMPANION", "effects": {"charisma": 1}, "requires": null},
+      {"letter": "C", "text": "Leave him with a warning", "leads_to": "KIRA_CH2_LEAVE", "effects": {"humanity": 1}, "requires": null}
+    ]
+  },
+  "KIRA_CH1_PARENTS": {
+    "id": "KIRA_CH1_PARENTS",
+    "character": "KIRA",
+    "description": "Commander Voss tells you what she knows.\n\nYour parents were Kira and Marcus Nightwind—two of the most powerful void mages of their generation. They protected crown pieces for forty years.\n\n'The Cult finally caught them in your village,' Voss says. 'Your mother fought. Your father died protecting you. Your mother...'\n\nShe pauses.\n\n'Your mother made a deal. She gave herself to the Hollow King in exchange for your life. That's why you still live. That's why the Cult keeps hunting you—because you're the key to bringing her back.'\n\nYour mother isn't dead. She's worse than dead. She's a prisoner of a god.",
+    "choices": [
+      {"letter": "A", "text": "Swear to free her", "leads_to": "KIRA_CH2_CROWNHAVEN", "effects": {"void_magic": 1}, "requires": null},
+      {"letter": "B", "text": "It's too late—she'd want you to survive", "leads_to": "KIRA_CH2_SURVIVE", "effects": {"humanity": 1}, "requires": null},
+      {"letter": "C", "text": "The Hollow King will pay", "leads_to": "KIRA_CH2_VENGEANCE", "effects": {"void_magic": 2}, "requires": null}
+    ]
+  },
+  "KIRA_CH1_CROWN_FIRST": {
+    "id": "KIRA_CH1_CROWN_FIRST",
+    "character": "KIRA",
+    "description": "You touch the crown piece, and the world goes silent.\n\nVisions flood your mind: Aethon the Undying, kneeling before an entity beyond comprehension. The Void Beast. A god that eats gods.\n\nAethon shattered his crown to keep it from falling into the Beast's hands. Seven pieces, scattered across time.\n\nBut the pieces call to each other. The Cult has six already. And now, with this seventh...\n\nYou feel the others drawing near. The Cult knows you're here.\n\nThe visions fade, but one thing remains: you now carry two pieces of the crown. And the Beast knows your face.",
+    "choices": [
+      {"letter": "A", "text": "Run—while you still can", "leads_to": "KIRA_CH2_CROWNHAVEN", "effects": {"dexterity": 1}, "requires": null},
+      {"letter": "B", "text": "Use the power to find the others", "leads_to": "KIRA_CH2_HUNT", "effects": {"void_magic": 3}, "requires": null},
+      {"letter": "C", "text": "Destroy this piece—before it's too late", "leads_to": "KIRA_CH2_SACRIFICE", "effects": {"humanity": 2}, "requires": null}
+    ]
+  },
+  "KIRA_CH2_CROWNHAVEN": {
+    "id": "KIRA_CH2_CROWNHAVEN",
+    "character": "KIRA",
+    "description": "Crownhaven rises before you—a city of a million souls, built on the bones of the old world. The old imperial palace looms over everything, its catacombs a maze of forgotten secrets.\n\nYou have one goal: find the crown piece hidden in the palace. Your parents died protecting its location. Now you must retrieve what they gave their lives to protect.\n\nThe palace is guarded, but you know a way in—through the servants' passages your mother drew in her spellbook.\n\nBelow, in the darkness, something waits.",
+    "choices": [
+      {"letter": "A", "text": "Enter through the catacombs", "leads_to": "KIRA_CH2_CATACOMBS", "effects": {"stealth": 1}, "requires": null},
+      {"letter": "B", "text": "Posh as a noble—walk right in", "leads_to": "KIRA_CH2_PALACE_ENTER", "effects": {"charisma": 1}, "requires": null},
+      {"letter": "C", "text": "Scout first—find another way", "leads_to": "KIRA_CH2_SCOUT", "effects": {"intelligence": 1}, "requires": null}
+    ]
+  },
+  "KIRA_CH2_CATACOMBS": {
+    "id": "KIRA_CH2_CATACOMBS",
+    "character": "KIRA",
+    "description": "The catacombs descend for miles beneath the city. The walls are covered in void script—warnings, prophecies, names of the dead.\n\nYou read them as you walk. Your great-grandmother. Your grandfather. All the Nightwinds who came before.\n\nAt the deepest level, you find the chamber: seven pedestals, six empty, one holding a fragment of the crown.\n\nBut a Hollow Knight guards it. Black armor, empty eyes, a sword that drinks light.\n\n'Kira Nightwind,' it speaks with a voice like grinding stones. 'The Master expects you.'",
+    "choices": [
+      {"letter": "A", "text": "Fight the Hollow Knight", "leads_to": "KIRA_CH2_BATTLE", "effects": {"void_magic": 2}, "requires": null},
+      {"letter": "B", "text": "Negotiate", "leads_to": "KIRA_CH2_NEGOTIATE", "effects": {"charisma": 1}, "requires": null},
+      {"letter": "C", "text": "Use shadows to bypass", "leads_to": "KIRA_CH2_BYPASS", "effects": {"stealth": 2}, "requires": null}
+    ]
+  },
+  "KIRA_CH2_BATTLE": {
+    "id": "KIRA_CH2_BATTLE",
+    "character": "KIRA",
+    "description": "The Hollow Knight is faster than any human. Its sword moves like thought—strike, parry, counter.\n\nBut you're faster.\n\nThe void answers your call. Shadows tear from the walls, wrapping around the Knight's limbs. You pour everything into the magic—eight years of hiding, eight years of fear, eight years of rage.\n\nThe Knight screams—a sound like tearing metal—and dissolves into darkness.\n\nYou stand alone in the chamber, breathing hard. The crown piece pulses with欢迎.\n\nYour mother left you a message, etched in void light: 'Forgive me. Find the truth. And when you're ready—destroy it all.'",
+    "choices": [
+      {"letter": "A", "text": "Take the crown piece", "leads_to": "KIRA_CH2_CROWN", "effects": {"void_magic": 2}, "requires": null},
+      {"letter": "B", "text": "Read your mother's message first", "leads_to": "KIRA_CH2_MESSAGE", "effects": {"intelligence": 2}, "requires": null},
+      {"letter": "C", "text": "Destroy the piece—end the cycle", "leads_to": "KIRA_CH2_DESTROY", "effects": {"humanity": -2}, "requires": null}
+    ]
+  },
+  "KIRA_CH2_NEGOTIATE": {
+    "id": "KIRA_CH2_NEGOTIATE",
+    "character": "KIRA",
+    "description": "'The Master wants you alive,' the Hollow Knight says. 'The others... less so.'\n\nYou keep your voice steady. 'Who is your Master? What does he want?'\n\n'The Hollow King. He wants the crown. And he wants you—specifically. Your bloodline created the seal. Your bloodline can break it.'\n\nThe Hollow Knight steps aside. Not defeated—allowing.\n\n'Take the piece, Kira Nightwind. Bring it to the Temple. And meet your mother.'\n\nSomething cold settles in your stomach. Your mother is alive. But at what cost?",
+    "choices": [
+      {"letter": "A", "text": "Take the crown piece", "leads_to": "KIRA_CH2_CROWN", "effects": {"void_magic": 1}, "requires": null},
+      {"letter": "B", "text": "Demand to see my mother", "leads_to": "KIRA_CH2_MOTHER", "effects": {"charisma": 1}, "requires": null},
+      {"letter": "C", "text": "Attack while its guard is down", "leads_to": "KIRA_CH2_BATTLE", "effects": {"void_magic": 1}, "requires": null}
+    ]
+  },
+  "KIRA_CH2_BYPASS": {
+    "id": "KIRA_CH2_BYPASS",
+    "character": "KIRA",
+    "description": "You become shadow—pure, formless darkness. The Knight passes through you, sensing nothing.\n\nIn the chamber, you see the crown piece without obstacles. It's smaller than you imagined—a ring of black metal that seems to absorb light.\n\nYou reach for it—and visions explode through your mind.\n\nAethon the Undying, screaming as the Void Beast tears his soul apart. His last act—shattering the crown, sending the pieces across time. Seven fragments, seven guardians, seven sacrifices.\n\nAnd then you see her: your mother, trapped in a cage of void light, screaming your name.\n\nThe vision releases you. The crown piece is in your hand. And the Hollow Knight is turning.",
+    "choices": [
+      {"letter": "A", "text": "Fight—now or never", "leads_to": "KIRA_CH2_BATTLE", "effects": {"void_magic": 2}, "requires": null},
+      {"letter": "B", "text": "Flee with the piece", "leads_to": "KIRA_CH2_ESCAPE", "effects": {"dexterity": 2}, "requires": null},
+      {"letter": "C", "text": "Use the piece as a weapon", "leads_to": "KIRA_CH2_WEAPON", "effects": {"void_magic": 3}, "requires": null}
+    ]
+  },
+  "KIRA_CH2_CROWN": {
+    "id": "KIRA_CH2_CROWN",
+    "character": "KIRA",
+    "description": "The crown piece is warm in your hand. Almost alive. It whispers secrets of the void—the language of nothing itself.\n\nYou feel the other pieces, scattered across the kingdoms. Six more fragments, each calling to this one. The Cult has five. The Circle has one. And now you hold the seventh.\n\nIn your mind, you see the map: the Temple of the Void, deep in the Ashen Wastes. The final convergence. The reunification.\n\nYour mother will be there. The Hollow King will be there. And the fate of the world will be decided.\n\nThree paths forward. Which will you take?",
+    "choices": [
+      {"letter": "A", "text": "Go to the Temple—finish this", "leads_to": "KIRA_CH3_TEMPLE", "effects": {"void_magic": 2}, "requires": null},
+      {"letter": "B", "text": "Gather allies first", "leads_to": "KIRA_CH3_ALLIES", "effects": {"charisma": 1}, "requires": null},
+      {"letter": "C", "text": "Study the piece more—understand the power", "leads_to": "KIRA_CH3_STUDY", "effects": {"intelligence": 2}, "requires": null}
+    ]
+  },
+  "KIRA_CH2_ESCAPE": {
+    "id": "KIRA_CH2_ESCAPE",
+    "character": "KIRA",
+    "description": "You run through the catacombs, the crown piece burning in your pocket. Behind you, the Hollow Knight's screams echo off the stone.\n\nYou emerge into the night air, gasping. Crownhaven spreads before you—a million lights, a million lives, none knowing what's coming.\n\nThe piece pulses: six more fragments, drawing closer. The Cult knows you have this one. They'll send everything.\n\nIn your mind, you see your mother's face—not as she is now, trapped in the void, but as she was: laughing, teaching you magic, holding you when you were afraid.\n\nYou won't let her down.",
+    "choices": [
+      {"letter": "A", "text": "Head straight for the Temple", "leads_to": "KIRA_CH3_TEMPLE", "effects": {"void_magic": 1}, "requires": null},
+      {"letter": "B", "text": "Find the Circle—unite against the Cult", "leads_to": "KIRA_CH3_CIRCLE", "effects": {"intelligence": 1}, "requires": null},
+      {"letter": "C", "text": "You're stronger alone—disappear", "leads_to": "KIRA_CH3_ALONE", "effects": {"stealth": 2}, "requires": null}
+    ]
+  },
+  "KIRA_CH3_TEMPLE": {
+    "id": "KIRA_CH3_TEMPLE",
+    "character": "KIRA",
+    "description": "The Temple of the Void stands at the heart of the Ashen Wastes—a tower of black stone that hurts to look at. Reality bends around it, as if the world itself doesn't want to exist here.\n\nSix Cultists stand around a dais. Each holds a crown piece. Each wears a mask of silver.\n\nAnd in the center, suspended in a cage of pure void light: your mother.\n\n'Kira.' Her voice is barely a whisper. 'You shouldn't have come.'\n\nThe seventh piece in your hand begins to glow. The six in the Cultists' possession flare in response.\n\nThe Hollow King is here. And he's been waiting for you.",
+    "choices": [
+      {"letter": "A", "text": "Charge—save your mother", "leads_to": "KIRA_CH3_CHARGE", "effects": {"void_magic": 2}, "requires": null},
+      {"letter": "B", "text": "Use the piece to communicate with your mother", "leads_to": "KIRA_CH3_TALK", "effects": {"intelligence": 2}, "requires": null},
+      {"letter": "C", "text": "Offer yourself in exchange for her freedom", "leads_to": "KIRA_CH3_BARGAIN", "effects": {"charisma": 1}, "requires": null}
+    ]
+  },
+  "KIRA_CH3_CHARGE": {
+    "id": "KIRA_CH3_CHARGE",
+    "character": "KIRA",
+    "description": "You throw yourself at the Cultists, the void blazing from your hands. They fall—shadows torn apart by shadows.\n\nBut there are more. Always more.\n\nThe Hollow King manifests: a formless thing of darkness and hunger. It wraps around you, squeezing the air from your lungs.\n\n'Your bloodline made me,' it hisses. 'Your great-great-grandfather bound me here. Now you'll undo it.'\n\nYour mother screams. The crown pieces fly toward you—seven fragments becoming one.\n\nAnd you understand: this is the choice. Become the Undying, or die trying.",
+    "choices": [
+      {"letter": "A", "text": "Claim the crown—become a god", "leads_to": "KIRA_ENDING_UNDYING", "effects": {"void_magic": 5}, "requires": null},
+      {"letter": "B", "text": "Destroy the crown—end everything", "leads_to": "KIRA_ENDING_MARTYR", "effects": {"humanity": -5}, "requires": null},
+      {"letter": "C", "text": "Free your mother instead—let the crown be", "leads_to": "KIRA_ENDING_HOLLOW", "effects": {"humanity": 3}, "requires": null}
+    ]
+  },
+  "KIRA_CH3_TALK": {
+    "id": "KIRA_CH3_TALK",
+    "character": "KIRA",
+    "description": "You reach through the void connection, finding your mother's mind.\n\nShe's been here for eight years—trapped, tortured, turned slowly to shadow. But she's still fighting.\n\n'The crown is a trap,' she whispers. 'Aethon didn't seal the Beast—he became it. The crown is its prison, and whoever wears it becomes the jailer.'\n\nThe Hollow King screams as he feels your intrusion. Your mother's last act of will tears a hole in his concentration.\n\n'Now,' she gasps. 'While he's weak—finish it.'\n\nThe seven pieces fly toward you. But which choice will you make?",
+    "choices": [
+      {"letter": "A", "text": "Destroy the crown—and yourself with it", "leads_to": "KIRA_ENDING_MARTYR", "effects": {"humanity": -3}, "requires": null},
+      {"letter": "B", "text": "Claim the crown—save your mother", "leads_to": "KIRA_ENDING_UNDYING", "effects": {"void_magic": 5}, "requires": null},
+      {"letter": "C", "text": "Free your mother and run", "leads_to": "KIRA_ENDING_HOLLOW", "effects": {"humanity": 2}, "requires": null}
+    ]
+  },
+  "KIRA_CH3_BARGAIN": {
+    "id": "KIRA_CH3_BARGAIN",
+    "character": "KIRA",
+    "description": "'Take me,' you say. 'Let her go. I'm the last Nightwind. I'm what you want.'\n\nThe Hollow King pauses. Your mother screams—no, no, no—\n\n'Kira, don't—'\n\n'Very well.' The darkness wraps around you. It feels like drowning in ice. 'Your mother will live. But you'll spend eternity in the void with me.'\n\nYour mother falls free as you're pulled into the darkness. The last thing you see is her face—tears streaming, reaching for you.\n\nAnd then there's only the void. And the hunger.",
+    "choices": [
+      {"letter": "A", "text": "Embrace the darkness", "leads_to": "KIRA_ENDING_HOLLOW", "effects": {"humanity": -5}, "requires": null},
+      {"letter": "B", "text": "Fight from within", "leads_to": "KIRA_ENDING_UNDYING", "effects": {"void_magic": 3}, "requires": null},
+      {"letter": "C", "text": "Take your mother with you", "leads_to": "KIRA_ENDING_MARTYR", "effects": {"humanity": -3}, "requires": null}
+    ]
+  },
+  "KIRA_ENDING_MARTYR": {
+    "id": "KIRA_ENDING_MARTYR",
+    "character": "KIRA",
+    "description": "You destroy the crown. All seven pieces shatter at once, releasing the Void Beast—and you along with it.\n\nIn your final moment, you see the world freed. The Hollow King screams as he's unmade. Your mother feels peace for the first time in eight years.\n\nAnd you? You become part of the void—not trapped, but free. A new guardian, watching over the world you saved.\n\nThe crown is gone. The Beast is gone. And in the silence of the void, you finally rest.",
+    "ending": "MARTYR",
+    "choices": []
+  },
+  "KIRA_ENDING_UNDYING": {
+    "id": "KIRA_ENDING_UNDYING",
+    "character": "KIRA",
+    "description": "You claim the crown. Power floods through you—unimaginable, terrifying, beautiful.\n\nYou are Aethon's heir now. The Undying. A god of the void.\n\nThe Hollow King cowers before you. You could destroy him—or you could use him.\n\nYour mother looks at you with fear in her eyes. You've become something else. Something beyond human.\n\nThe world will never be the same. And neither will you.",
+    "ending": "UNDYING",
+    "choices": []
+  },
+  "KIRA_ENDING_HOLLOW": {
+    "id": "KIRA_ENDING_HOLLOW",
+    "character": "KIRA",
+    "description": "You give yourself to the Hollow King. In exchange, your mother lives—a mortal again, free at last.\n\nBut you? You're lost. Part of the darkness forever. A new prisoner in the void.\n\nSometimes, in her dreams, your mother feels you there. Reaching. Wanting. Never quite gone.\n\nAnd the crown remains, waiting for the next Nightwind to make the same choice.",
+    "ending": "FOLLOW",
+    "choices": []
+  }
+}

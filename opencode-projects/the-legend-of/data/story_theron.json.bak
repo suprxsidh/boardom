@@ -1,0 +1,383 @@
+{
+  "THERON_CH1_TAVERN": {
+    "id": "THERON_CH1_TAVERN",
+    "character": "THERON",
+    "description": "The Broken Blade tavern reeks of stale ale and desperation. You sit in the corner, a mug of something cheap and bitter in your weathered hands. Once, men knelt before you. Once, you wore the Silver Crown of the King's Guard. Now, you wear rags and a beard grown from neglect.\n\nThe fire crackles. Other patrons avoid your table—they've heard the stories of Theron Ashford, the knight who failed his kingdom. The knight who couldn't save the king. The knight who chose survival over honor.\n\nYou drink to forget. But the void never lets you forget. It whispers in your dreams, in thebottom of your cup, in the eyes of every noble you've learned to hate.\n\nThe tavern door creaks open. A woman enters, cloaked in midnight blue. Her eyes find you immediately.\n\n'Theron Ashford,' she says. 'I've been looking for you.'",
+    "choices": [
+      {"letter": "A", "text": "Ignore her—another creditor or bounty hunter", "leads_to": "THERON_CH1_IGNORE", "effects": {"humanity": -1}, "requires": null},
+      {"letter": "B", "text": "Challenge her—what does she want?", "leads_to": "THERON_CH1_DEMAND", "effects": {"strength": 1}, "requires": null},
+      {"letter": "C", "text": "Politely decline—whatever she's selling", "leads_to": "THERON_CH1_DECLINE", "effects": {"charisma": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH1_IGNORE": {
+    "id": "THERON_CH1_IGNORE",
+    "character": "THERON",
+    "description": "You don't look up. Can't she see you're busy drowning your sorrows? The void stirs in your chest—that familiar ache of power you no longer deserve.\n\nShe sits across from you anyway. Her hand removes her hood, revealing silver-streaked hair and a face carved by decades of court intrigue. This is no ordinary hunter.\n\n'I am Lady Morgana Vance,' she says. 'High Advisor to Queen Seraphina. And I've come to offer you something precious: redemption.'\n\nThe word hits like a blade. Redemption. You almost laugh.\n\n'Your queen's guard killed my honor,' you say. 'Your queen's throne is built on lies.'\n\nMorgana smiles coldly. 'Then help me unbuild it. There's a Cult that operates in her name. The Ashfield Cult. And they need to be stopped.'",
+    "choices": [
+      {"letter": "A", "text": "Accept the mission—finally, action", "leads_to": "THERON_CH1_MISSION", "effects": {"combat": 1}, "requires": null},
+      {"letter": "B", "text": "Demand payment first—you need coin", "leads_to": "THERON_CH1_PAYMENT", "effects": {"gold": 2}, "requires": null},
+      {"letter": "C", "text": "Ask for time to think—too many scars", "leads_to": "THERON_CH1_HESITATE", "effects": {"intelligence": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH1_DEMAND": {
+    "id": "THERON_CH1_DEMAND",
+    "character": "THERON",
+    "description": "Your hand moves to your belt—where your sword used to hang. You sold it three months ago for drink money. But the reflex remains.\n\nThe woman's eyes flick to your movement, then back to your face. No fear. Interesting.\n\n'I am Lady Morgana Vance,' she says. 'High Advisor to Queen Seraphina. And I don't have time for your posturing, Theron. Your king is dead. Your order is scattered. And your drinking won't bring them back.'\n\nThe words cut deeper than any blade. You could kill her. No—you could never. But the rage is familiar. Better than the emptiness.\n\n'What do you want?' you growl.\n\nShe slides a parchment across the table. 'The Ashfield Cult. They've infiltrated the court. I need a hunter, not a knight. Someone who understands darkness.'\n\nHer eyes meet yours. 'Someone like you.'",
+    "choices": [
+      {"letter": "A", "text": "Take the contract—let's end this", "leads_to": "THERON_CH1_MISSION", "effects": {"strength": 1}, "requires": null},
+      {"letter": "B", "text": "Negotiate terms—nothing free in this world", "leads_to": "THERON_CH1_PAYMENT", "effects": {"charisma": 1}, "requires": null},
+      {"letter": "C", "text": "She's lying—investigate first", "leads_to": "THERON_CH1_SUSPICION", "effects": {"intelligence": 2}, "requires": null}
+    ]
+  },
+  "THERON_CH1_DECLINE": {
+    "id": "THERON_CH1_DECLINE",
+    "character": "THERON",
+    "description": "You shake your head, not even looking at her. 'I'm retired. Find another broken knight to do your bidding.'\n\nBut she doesn't leave. Instead, she sits uninvited, her presence filling the space like a storm cloud.\n\n'Your princess died in that fire, Theron.'\n\nThe room goes silent. The void inside you roars.\n\n'Princess Elara. Trapped in the burning palace while you escaped. The king ordered you to save her, and you chose yourself.'\n\nYour hand shakes around the mug. 'I tried—'\n\n'You tried to save yourself. The princess burned. And the Cult that set that fire? They're still out there. Worshipping false gods. Building power in the shadows.'\n\nShe leans close. 'Don't you want to know why?'\n\nThe question hangs in the air. And for the first time in years, you feel something other than emptiness. You feel hate.",
+    "choices": [
+      {"letter": "A", "text": "Accept—for her sake, for Elara", "leads_to": "THERON_CH1_MISSION", "effects": {"honor": 2}, "requires": null},
+      {"letter": "B", "text": "Who is she really?—dig for truth", "leads_to": "THERON_CH1_SUSPICION", "effects": {"intelligence": 1}, "requires": null},
+      {"letter": "C", "text": "Walk away—some debts can't be paid", "leads_to": "THERON_CH1_LEAVE", "effects": {"humanity": -1}, "requires": null}
+    ]
+  },
+  "THERON_CH1_MISSION": {
+    "id": "THERON_CH1_MISSION",
+    "character": "THERON",
+    "description": "You stand—your knees aching, your back sore from years of hunched drinking. But for the first time, something feels right.\n\n'告诉我,' you say. 'Everything.'\n\nMorgana outlines the mission: The Ashfield Cult worships the Void—that ancient nothing that existed before creation. They've been secretly sacrificing nobles, stealing artifacts, building toward something called the Convergence.\n\n'Vespera,' Morgana says. 'Their leader. Once a priestess of the light, now something else. She holds court in the old temple outside Thornwick.'\n\nShe hands you a purse—heavy with gold. 'Find them. Expose them. And if you can... bring me proof of their conspiracy.'\n\nYou take the gold. You take the name. And you take the first step toward either redemption or ruin.",
+    "choices": [
+      {"letter": "A", "text": "Travel directly to Thornwick—confront them", "leads_to": "THERON_CH1_JOURNEY", "effects": {"strength": 1}, "requires": null},
+      {"letter": "B", "text": "Gather intel first—find allies", "leads_to": "THERON_CH1_ALLIES", "effects": {"charisma": 1}, "requires": null},
+      {"letter": "C", "text": "Research the Cult—understand the enemy", "leads_to": "THERON_CH1_RESEARCH", "effects": {"intelligence": 2}, "requires": null}
+    ]
+  },
+  "THERON_CH1_PAYMENT": {
+    "id": "THERON_CH1_PAYMENT",
+    "character": "THERON",
+    "description": "You hold out your hand. 'Gold. Fifty sovereigns. Upfront.'\n\nMorgana raises an eyebrow. 'You were once a knight of the realm. Now you bargain like a mercenary?'\n\n'I was a knight of a dead king. Now I'm just a man who needs drink money.'\n\nShe reaches into her cloak and produces a pouch. It clinks with more than fifty coins.\n\n'Seventy,' she says. 'But this comes with strings. I need the Cult exposed—not just destroyed. Evidence that will convince the court. The queen's council is compromised, Theron. I need proof, not bodies.'\n\nYou weigh the pouch. Seventy sovereigns. Enough to drink yourself to death twice over.\n\n'Or,' she adds, 'I could simply leave. Find another broken knight. There's always more.'\n\nThe challenge hangs in the air. You take the gold.",
+    "choices": [
+      {"letter": "A", "text": "Accept—alliance sealed", "leads_to": "THERON_CH1_MISSION", "effects": {"gold": 2}, "requires": null},
+      {"letter": "B", "text": "Demand more—your skills are valuable", "leads_to": "THERON_CH1_DEMAND", "effects": {"charisma": 1}, "requires": null},
+      {"letter": "C", "text": "Accept but with conditions—you won't kill innocents", "leads_to": "THERON_CH1_MISSION", "effects": {"honor": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH1_HESITATE": {
+    "id": "THERON_CH1_HESITATE",
+    "character": "THERON",
+    "description": "You don't answer. Can't she see the scars? The memories? Every time you close your eyes, you see the flames. The princess screaming your name. The king's body, broken and burned.\n\n'I'll be here tomorrow,' Morgana says. 'And the day after. The Cult won't wait forever. Neither will I.'\n\nShe leaves a card on the table—an address in the lower city. Then she's gone, swallowed by the night.\n\nYou stare at the card for hours. Redemption. Such a small word for such an enormous lie.\n\nBut dawn finds you outside that address. Old habits die hard. Duty, even when it's murdered, sometimes leaves a pulse.",
+    "choices": [
+      {"letter": "A", "text": "Meet her at dawn—you've made your choice", "leads_to": "THERON_CH1_MISSION", "effects": {"honor": 1}, "requires": null},
+      {"letter": "B", "text": "Still uncertain—wait one more day", "leads_to": "THERON_CH1_DELAY", "effects": {"humanity": -1}, "requires": null},
+      {"letter": "C", "text": "Prepare anyway—equipment and supplies", "leads_to": "THERON_CH1_PREPARE", "effects": {"intelligence": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH1_SUSPICION": {
+    "id": "THERON_CH1_SUSPICION",
+    "character": "THERON",
+    "description": "You hold her gaze. 'Why me? Any knight could do this. Any spy. Any assassin.'\n\nMorgana's smile is thin. 'Because any of them might be bought. The Cult has gold, Theron. More gold than the crown itself. But you?'\n\nShe leans back. 'You have nothing left to buy. And everything to prove.'\n\nThat stings. But it's also true.\n\n'I'll check your story,' you say. 'If you're lying, I'll find out.'\n\nShe nods. 'I would expect nothing less. The Ashfield Cult meets in the old temple at Thornwick. Their leader goes by Vespera. That's all I know—and all I need you to discover.'\n\nShe stands to leave. 'I'll be in touch.'\n\nBut as the door closes, you notice something: her signet ring. It bears a symbol—a crescent moon, intertwined with shadows. The symbol of the old priesthood.\n\nThe same symbol, you realize, that's been carved into the bodies of the Cult's victims.",
+    "choices": [
+      {"letter": "A", "text": "Confront her about the symbol", "leads_to": "THERON_CH1_CONFRONT", "effects": {"intelligence": 2}, "requires": null},
+      {"letter": "B", "text": "Play along— gather evidence first", "leads_to": "THERON_CH1_MISSION", "effects": {"stealth": 1}, "requires": null},
+      {"letter": "C", "text": "Reject her entirely—she's part of it", "leads_to": "THERON_CH1_LEAVE", "effects": {"strength": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH1_LEAVE": {
+    "id": "THERON_CH1_LEAVE",
+    "character": "THERON",
+    "description": "You stand abruptly, the chair scraping against the floor. 'Find someone else. I don't do politics. I don't do redemption. I don't do queens.'\n\nMorgana's voice follows you to the door. 'The princess knew your name, Theron. She screamed it. And you left her to burn.'\n\nYou pause at the threshold. The void roars inside you, demanding silence.\n\n'You're already dead,' she calls. 'A man walking around in a corpse. That's not living—that's hiding. And we both know it.'\n\nYou walk into the night. The cold air hits your face, and for a moment, you feel nothing at all.\n\nBut three blocks later, you're stealing a sword from a drunk guard. And heading toward Thornwick.\n\nMaybe death is better than this emptiness. Maybe this mission is just a complicated way to end it.",
+    "choices": [
+      {"letter": "A", "text": "Go to Thornwick—find the Cult", "leads_to": "THERON_CH1_JOURNEY", "effects": {"strength": 1}, "requires": null},
+      {"letter": "B", "text": "Wait—observe first, then act", "leads_to": "THERON_CH1_ALLIES", "effects": {"stealth": 1}, "requires": null},
+      {"letter": "C", "text": "Look for another lead—this feels wrong", "leads_to": "THERON_CH1_RESEARCH", "effects": {"intelligence": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH1_DELAY": {
+    "id": "THERON_CH1_DELAY",
+    "character": "THERON",
+    "description": "One more day. That's all you ask. One more day to drink, to pretend, to ignore the call of the void.\n\nBut the void doesn't wait. It never waits.\n\nThat night, you dream of flames. Princess Elara stands in the center of a burning room, her hands raised, calling for you. You reach for her—and your hands pass through like smoke.\n\nShe burns. And you watch.\n\nDawn brings sickness, not answers. Your hands shake. Your head pounds. And worst of all: the dream won't fade.\n\nYou find Morgana's address. But something has changed. You're not doing this for redemption anymore. You're doing it because if you stop, you'll drown in the flames.",
+    "choices": [
+      {"letter": "A", "text": "Accept the mission—all doubts aside", "leads_to": "THERON_CH1_MISSION", "effects": {"honor": 1}, "requires": null},
+      {"letter": "B", "text": "Tell her about the dreams—she knows something", "leads_to": "THERON_CH1_DREAMS", "effects": {"intelligence": 1}, "requires": null},
+      {"letter": "C", "text": "Go anyway—action over thought", "leads_to": "THERON_CH1_JOURNEY", "effects": {"combat": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH1_PREPARE": {
+    "id": "THERON_CH1_PREPARE",
+    "character": "THERON",
+    "description": "You spend the night preparing—not for redemption, but for war. A sword from a dead guard. A dagger hidden in your boot. Bread and dried meat for the road.\n\nThe void responds to your preparation. It whispers of weaknesses, of angles of attack, of where to strike. You'd forgotten how much you knew.\n\nIn the morning, you feel almost human. Almost ready.\n\nBut Morgana isn't at her address. Instead, a messenger waits with a note: 'Temple of the Ash. Midnight. Come alone.'\n\nThe Temple of the Ash is a ruin—a burnt-out church from the old king's time. No one goes there. No one remembers why.\n\nExcept you do. That's where the fire started. That's where the Cult made their first sacrifice.",
+    "choices": [
+      {"letter": "A", "text": "Go to the temple—confront her there", "leads_to": "THERON_CH1_TEMPLE", "effects": {"stealth": 1}, "requires": null},
+      {"letter": "B", "text": "Bring backup—trust no one", "leads_to": "THERON_CH1_ALLIES", "effects": {"combat": 1}, "requires": null},
+      {"letter": "C", "text": "Investigate first—learn the history", "leads_to": "THERON_CH1_RESEARCH", "effects": {"intelligence": 2}, "requires": null}
+    ]
+  },
+  "THERON_CH1_CONFRONT": {
+    "id": "THERON_CH1_CONFRONT",
+    "character": "THERON",
+    "description": "You turn back, your hand on the door. 'Your ring. The crescent moon and shadow.'\n\nMorgana freezes. For a moment, something flashes in her eyes—fear?\n\n'The old priesthood,' you continue. 'They served the Void before the kingdom was born. And that symbol—it matches the Cult's marks.'\n\nShe slowly turns, her hand going to the ring. 'There are two kinds of people in this world, Theron. Those who serve the void, and those who use it against itself.'\n\nShe removes the ring, placing it on the table. 'I was young when they took me. A priestess of the old ways. But I found the light instead—the queen's light. And I've spent thirty years fighting what I was.'\n\nHer eyes meet yours. 'Now do you understand? They want me dead. They've tried before. I need someone who knows their darkness.'",
+    "choices": [
+      {"letter": "A", "text": "Accept—understands her pain", "leads_to": "THERON_CH1_MISSION", "effects": {"charisma": 2}, "requires": null},
+      {"letter": "B", "text": "Take the ring—as insurance", "leads_to": "THERON_CH1_MISSION", "effects": {"stealth": 1}, "requires": null},
+      {"letter": "C", "text": "Still suspicious—watch her closely", "leads_to": "THERON_CH1_MISSION", "effects": {"intelligence": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH1_JOURNEY": {
+    "id": "THERON_CH1_JOURNEY",
+    "character": "THERON",
+    "description": "The road to Thornwick winds through the Ashen Hills—a territory that hasn't recovered from the old wars. Burnt trees dot the landscape like skeletal fingers reaching for a sky that never lightens.\n\nYou travel for three days. The void keeps you company—it whispers of danger ahead, of traps and treachery. You stopped questioning it years ago.\n\nOn the second night, you make camp near an abandoned village. The houses are blackened, their occupants long since fled or taken. The Cult did this, you know. Their work.\n\nYou find a survivor hiding in a cellar—an old woman, half-mad with fear.\n\n'They took the children,' she whispers. 'All of them. For the Convergence. The shadow lady will be so pleased.'\n\nThe shadow lady. Vespera.\n\nShe dies in your arms before you can learn more. But the word stays with you: Convergence. Something big is coming.",
+    "choices": [
+      {"letter": "A", "text": "Push forward—time is short", "leads_to": "THERON_CH1_AMBUSH", "effects": {"strength": 1}, "requires": null},
+      {"letter": "B", "text": "Search for survivors—find answers", "leads_to": "THERON_CH1_SURVIVORS", "effects": {"intelligence": 1}, "requires": null},
+      {"letter": "C", "text": "Set a trap—let them come to you", "leads_to": "THERON_CH1_TRAP", "effects": {"stealth": 2}, "requires": null}
+    ]
+  },
+  "THERON_CH1_ALLIES": {
+    "id": "THERON_CH1_ALLIES",
+    "character": "THERON",
+    "description": "You don't go to Thornwick alone. Old contacts remain—mercenaries, spies, other broken knights who owe you favors from a life you try to forget.\n\nThere's Garreth, a former guard captain who lost his commission for drinking. Brynn, a thief who once tried to pick your pocket and ended up owing you her life. Old Marcus, a healer with no love for the queen but deep hatred for the Cult.\n\nThey gather in a seedy tavern in the lower city, their faces carved by years of survival. They look at you with something like hope.\n\n'The Ashfield Cult,' you tell them. 'We've heard stories. Bad ones.' Brynn shakes her head. 'They take children, Theron. For rituals. For sacrifices.'\n\nGarreth spits on the floor. 'The queen's court is compromised. Everyone knows it. But no one can prove it.'\n\nYou have your team. Now you need a plan.",
+    "choices": [
+      {"letter": "A", "text": "Split up—cover more ground", "leads_to": "THERON_CH1_JOURNEY", "effects": {"charisma": 1}, "requires": null},
+      {"letter": "B", "text": "Infiltrate as a group—overwhelming force", "leads_to": "THERON_CH1_ASSAULT", "effects": {"combat": 2}, "requires": null},
+      {"letter": "C", "text": "Gather intelligence first—learn their patterns", "leads_to": "THERON_CH1_RESEARCH", "effects": {"intelligence": 2}, "requires": null}
+    ]
+  },
+  "THERON_CH1_RESEARCH": {
+    "id": "THERON_CH1_RESEARCH",
+    "character": "THERON",
+    "description": "You spend two days in the great library of Thornwick—or what's left of it. The Cult burned most of the records, but some survived.\n\nThe Ashfield Cult emerged thirty years ago, following the old king's death. They worship the Void—that primordial darkness before creation. Their goal: the Convergence, when all shadows merge into one, ending the world as we know it.\n\nTheir leader, Vespera, was once a priestess of the Light. She was beautiful once—a saint, they called her. But something broke her. Or perhaps she was always broken, waiting to be unleashed.\n\nThe records mention artifacts: seven shards of the Void Crown, scattered after the Sundering. The Cult has six. The seventh is hidden.\n\nAnd when they reunite all seven shards... the Convergence will begin.\n\nYou close the last book. The world is stranger than you knew. And darker.",
+    "choices": [
+      {"letter": "A", "text": "Find the seventh shard—stop the Convergence", "leads_to": "THERON_CH2_SHARD", "effects": {"intelligence": 2}, "requires": null},
+      {"letter": "B", "text": "Confront Vespera directly—end this now", "leads_to": "THERON_CH1_JOURNEY", "effects": {"strength": 1}, "requires": null},
+      {"letter": "C", "text": "Contact the Circle of Mages—seek help", "leads_to": "THERON_CH2_CIRCLE", "effects": {"void_magic": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH1_AMBUSH": {
+    "id": "THERON_CH1_AMBUSH",
+    "character": "THERON",
+    "description": "The road through the hills narrows into a canyon. Bad territory. You should know better—once, you were a knight who understood tactics.\n\nBut the void doesn't warn you. It wants this.\n\nArrows strike from the rocks above. You twist, one piercing your shoulder, but the others miss. You draw your stolen sword and charge the shadows.\n\nCultists drop from the rocks—six of them, blades gleaming with poison. Their eyes are empty, their faces flat. They've given themselves to the void. There's no reasoning with them.\n\nYou fight with forgotten skill—the training of a lifetime muscle memory. The void responds, lending you strength you thought was gone. The first two fall. Then the third. But more keep coming.\n\nAn arrow takes you in the leg. You go down. And the Cultists circle, ready to finish it.",
+    "choices": [
+      {"letter": "A", "text": "Fight to the death—don't give up", "leads_to": "THERON_CH1_SURVIVE", "effects": {"strength": 2}, "requires": null},
+      {"letter": "B", "text": "Use the void to escape—darkness shields you", "leads_to": "THERON_CH1_ESCAPE", "effects": {"void_magic": 1}, "requires": null},
+      {"letter": "C", "text": "Surrender—learn their plans", "leads_to": "THERON_CH1_CAPTURE", "effects": {"intelligence": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH1_SURVIVORS": {
+    "id": "THERON_CH1_SURVIVORS",
+    "character": "THERON",
+    "description": "You search the ruins for two days. Most are dead—but a few survived, hiding in basements and crawlspaces.\n\nA young boy, perhaps ten, is the only one who can speak. The Cult took his sister. 'The shadow lady wants her for the big ceremony,' he says. 'She said when the moons align, the darkness will come.'\n\nYou learn more: The Cult holds their base in the old temple, three miles north. They have dozens of followers, and more arriving every day. And they're preparing for something called the Night of Convergence.\n\nThe boy begs to come with you. You should leave him—he'll only slow you down. But his eyes remind you of someone. Princess Elara, perhaps. Another child you couldn't save.\n\n'Stay hidden,' you tell him. 'I'll bring your sister back.'\n\nThe promise feels like ash in your mouth. But it's the only thing you have left to give.",
+    "choices": [
+      {"letter": "A", "text": "Take him with you—he deserves justice", "leads_to": "THERON_CH2_COMPANION", "effects": {"charisma": 1}, "requires": null},
+      {"letter": "B", "text": "Leave him at the village—safer", "leads_to": "THERON_CH1_JOURNEY", "effects": {"humanity": 1}, "requires": null},
+      {"letter": "C", "text": "Send for Morgana—he needs protection", "leads_to": "THERON_CH2_MESSENGER", "effects": {"intelligence": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH1_TRAP": {
+    "id": "THERON_CH1_TRAP",
+    "character": "THERON",
+    "description": "You set a trap—a false trail leading to an abandoned mill. Cultists will follow, thinking you isolated. Instead, they'll walk into a killzone.\n\nIt takes hours to prepare, but the void helps. It always helps when death is involved.\n\nThree Cultists take the bait. They're careless, expecting an easy target. They find you instead.\n\nThe fight is short. Your blade takes the first through the throat. The second falls to your counter. The third tries to run—you let him go, so he'll bring others.\n\nBut something feels wrong. The Cultists are too weak, too poorly trained. They fight like fanatics, not soldiers.\n\nA noise behind you. You spin—but it's already too late. A blade pierces your side.\n\nVespera steps from the shadows. She's beautiful, in a terrible way. Her eyes hold the void itself.\n\n'Theron Ashford,' she says. 'I've been waiting for you.'",
+    "choices": [
+      {"letter": "A", "text": "Fight her—your death or hers", "leads_to": "THERON_CH1_SURVIVE", "effects": {"combat": 2}, "requires": null},
+      {"letter": "B", "text": "Talk—understand her plan", "leads_to": "THERON_CH2_VESPERA", "effects": {"intelligence": 2}, "requires": null},
+      {"letter": "C", "text": "Flee—live to fight another day", "leads_to": "THERON_CH1_ESCAPE", "effects": {"stealth": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH1_SURVIVE": {
+    "id": "THERON_CH1_SURVIVE",
+    "character": "THERON",
+    "description": "You fight like the knight you once were. The void runs through your veins, lending strength to your blade. Blood paints the rocks. Your wounds don't matter. Nothing matters but survival.\n\nFive Cultists fall. Then ten. The arrow in your shoulder tears as you move, but the pain is distant, irrelevant. You've entered the void-state—pure combat, pure instinct.\n\nWhen it's over, you stand alone in the canyon, covered in blood. Yours or theirs—you don't know. The void recedes, leaving exhaustion in its wake.\n\nYour injuries are serious. Without help, you won't survive the journey. But you've won. For now.\n\nA survivor among the Cultists—a young woman, barely more than a girl—lies dying against a rock. She looks at you with empty eyes.\n\n'The Convergence is coming,' she gasps. 'Nothing can stop it. Nothing.'\n\nShe dies. But her words echo in your mind.",
+    "choices": [
+      {"letter": "A", "text": "Press on—the mission continues", "leads_to": "THERON_CH2_TEMPLE", "effects": {"strength": 2}, "requires": null},
+      {"letter": "B", "text": "Seek medical help—find a healer", "leads_to": "THERON_CH2_HEALER", "effects": {"humanity": 1}, "requires": null},
+      {"letter": "C", "text": "Return to Morgana—report what you know", "leads_to": "THERON_CH2_REPORT", "effects": {"charisma": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH1_ESCAPE": {
+    "id": "THERON_CH1_ESCAPE",
+    "character": "THERON",
+    "description": "The void wraps around you like a cloak. Shadow and silence—your old friends. You've forgotten how to use them, but they remember you.\n\nYou become darkness, slipping between the Cultists. Their blades pass through where you stood. Their arrows miss by inches. You flow like smoke, untouchable.\n\nSeconds later, you're at the temple entrance. The Cultists are still searching, confused.\n\nInside, the temple is vast—a cathedral of shadows. The altar at its heart glows with sickly light. And there, suspended above it: children. Dozens of them. Sacrifices waiting to be made.\n\nThe void screams at you to act. But first, you need to understand. What is the Convergence? What does Vespera really want?\n\nYou find a hidden vantage point. And watch.",
+    "choices": [
+      {"letter": "A", "text": "Attack now—save the children", "leads_to": "THERON_CH2_BATTLE", "effects": {"combat": 2}, "requires": null},
+      {"letter": "B", "text": "Observe—learn the ritual", "leads_to": "THERON_CH2_RITUAL", "effects": {"intelligence": 2}, "requires": null},
+      {"letter": "C", "text": "Find Vespera—confront her directly", "leads_to": "THERON_CH2_VESPERA", "effects": {"stealth": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH1_CAPTURE": {
+    "id": "THERON_CH1_CAPTURE",
+    "character": "THERON",
+    "description": "You let them take you. It's not surrender—it's strategy. They bind your hands with iron chains blessed by priests, but they don't know about the void inside you. It recognizes the chains for what they are: inconveniences.\n\nThey drag you to the temple. It's larger than you imagined—a sprawling complex built over centuries, layer upon layer of worship and sacrifice. They don't just worship the void here. They study it.\n\nThe children are held in the lower chambers. Dozens of them, drugged into sleep. Their souls will feed the Convergence.\n\nBut you see something else: maps. Charts. The Cult's full plan.\n\nThe Night of Convergence is three days away. When the moons align, the seven shards will merge, tearing open a portal to the void itself. And through that portal, something ancient will emerge.\n\nThe Void Beast. A god that was sealed away at the Sundering. And now, it's waking up.",
+    "choices": [
+      {"letter": "A", "text": "Break out—stop the ritual", "leads_to": "THERON_CH2_BATTLE", "effects": {"strength": 2}, "requires": null},
+      {"letter": "B", "text": "Play along—await your chance", "leads_to": "THERON_CH2_PRISON", "effects": {"intelligence": 1}, "requires": null},
+      {"letter": "C", "text": "Use the void to contact Morgana", "leads_to": "THERON_CH2_MESSAGE", "effects": {"void_magic": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH2_SHARD": {
+    "id": "THERON_CH2_SHARD",
+    "character": "THERON",
+    "description": "The research leads you to a crypt beneath the old cathedral. The seventh shard has been hidden here for thirty years—a safeguard against the very convergence the Cult now pursues.\n\nThe chamber is sealed with void wards. Only someone who walks the darkness can enter. Only someone with nothing left to lose can claim the power.\n\nInside, the shard floats in a sphere of shadow. It's beautiful and terrible—a piece of something that should never exist.\n\nWhen you touch it, visions flood your mind. The Void Beast, rising from its prison. The world ending in shadow. And at the center of it all: you, transformed into something beyond human.\n\nThe shard calls to you. It wants to be used. It wants you to become the Convergence's instrument—or its weapon against the Cult.\n\nYou take the shard. Power floods through you—darkness made manifest. And somewhere, across the kingdom, Vespera feels your presence.",
+    "choices": [
+      {"letter": "A", "text": "Use the shard against the Cult", "leads_to": "THERON_CH2_TEMPLE", "effects": {"void_magic": 3}, "requires": null},
+      {"letter": "B", "text": "Hide the shard—it cannot be used", "leads_to": "THERON_CH2_HIDE", "effects": {"intelligence": 1}, "requires": null},
+      {"letter": "C", "text": "Bring it to Morgana—trust the queen", "leads_to": "THERON_CH2_REPORT", "effects": {"charisma": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH2_CIRCLE": {
+    "id": "THERON_CH2_CIRCLE",
+    "character": "THERON",
+    "description": "The Circle of Mages hides in plain sight—a tower that appears different to each observer. You climb the stairs, each step taking you further from the world you knew.\n\nThe Archmage awaits at the top. An ageless woman with silver hair and eyes that see through time.\n\n'Theron Ashford,' she says. 'We wondered when you'd come.'\n\nShe knows about the Cult. About Vespera. About the Convergence.\n\n'The Void Beast was sealed at the Sundering,' she explains. 'Seven shards of its power were scattered across the kingdoms. The Cult has collected six. If they claim the seventh...'\n\nShe doesn't finish. She doesn't have to.\n\n'We can help you,' she offers. 'But the price is your service. Become our weapon against the darkness, and we'll help you destroy the Cult.'",
+    "choices": [
+      {"letter": "A", "text": "Accept their help—you need power", "leads_to": "THERON_CH2_TRAINING", "effects": {"void_magic": 2}, "requires": null},
+      {"letter": "B", "text": "Reject—you'll find another way", "leads_to": "THERON_CH2_TEMPLE", "effects": {"strength": 1}, "requires": null},
+      {"letter": "C", "text": "Ask about the seventh shard", "leads_to": "THERON_CH2_SHARD", "effects": {"intelligence": 2}, "requires": null}
+    ]
+  },
+  "THERON_CH2_TEMPLE": {
+    "id": "THERON_CH2_TEMPLE",
+    "character": "THERON",
+    "description": "The Temple of Ash rises against the grey sky—a monolith of black stone that's stood for a thousand years. This is where the first Convergence was attempted. This is where it will happen again.\n\nYou approach through the outer defenses. Cultists scatter before you—either fleeing or attacking. You cut through them without mercy. The void has made you strong.\n\nInside, the temple is a maze. Chambers upon chambers, each dedicated to a different aspect of the void. Sacrifice rooms. Meditation halls. Torture chambers where the faithful are broken and remade.\n\nYou find the main chamber—the heart of the temple. Seven pedestals ring a central dais. Six hold shards of terrible power, glowing with barely contained darkness. The seventh is empty.\n\nAt the dais stands a woman. Vespera. She turns, and you see her face.\n\nAnd you realize you know her.",
+    "choices": [
+      {"letter": "A", "text": "Attack—end this now", "leads_to": "THERON_CH3_BATTLE", "effects": {"combat": 2}, "requires": null},
+      {"letter": "B", "text": "Demand answers—who is she?", "leads_to": "THERON_CH2_VESPERA", "effects": {"intelligence": 1}, "requires": null},
+      {"letter": "C", "text": "Wait—let her complete the ritual", "leads_to": "THERON_CH3_RITUAL", "effects": {"stealth": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH2_VESPERA": {
+    "id": "THERON_CH2_VESPERA",
+    "character": "THERON",
+    "description": "Vespera's face is beautiful and terrible. You know those features—softened by decades, but unmistakable.\n\n'Princess Elara?'\n\nShe smiles. It's wrong. Too many teeth. Too much darkness.\n\n'Brother Theron. I wondered when you'd come. I've been waiting for you.'\n\nPrincess Elara—the child you couldn't save—is now the leader of the Cult. The fire didn't kill her. It transformed her.\n\n'I burned that night,' she says. 'I burned, and I died, and I was reborn in the void. The Beast spoke to me. It showed me the truth. The world is a wound, Theron. And the void will heal it.'\n\nShe reaches for you. 'Join me. Together, we can complete the Convergence. We can end all the pain. All the suffering. All the memories that keep you awake at night.'\n\nYour hand tightens on your sword. But she's not done.\n\n'Or kill me,' she says. 'But then the Convergence happens anyway. I'm not the key—the shards are. And I have six of them.'",
+    "choices": [
+      {"letter": "A", "text": "Kill her—end this corruption", "leads_to": "THERON_CH3_BATTLE", "effects": {"strength": 2}, "requires": null},
+      {"letter": "B", "text": "Join her—find another way later", "leads_to": "THERON_CH3_JOIN", "effects": {"void_magic": 2}, "requires": null},
+      {"letter": "C", "text": "Talk her out of it—use the past", "leads_to": "THERON_CH3_TALK", "effects": {"charisma": 2}, "requires": null}
+    ]
+  },
+  "THERON_CH2_COMPANION": {
+    "id": "THERON_CH2_COMPANION",
+    "character": "THERON",
+    "description": "The boy, Caden, follows you through the hills. He doesn't speak much—too much trauma—but he moves quickly, staying close.\n\nYou make camp the first night under an overpass. He watches you sharpen your sword, then speaks.\n\n'My sister—she has the void in her. She told me. She's scared, but she said it doesn't hurt anymore.'\n\nYou pause. The void in a child. That changes everything.\n\n'What was her name?'\n\n'Lily. She was taken three days ago. The shadow lady wanted her for something special.'\n\nThe boy looks at you with hope. 'You said you'd bring her back. Is that still true?'\n\nYou think about Princess Elara. About the fire. About all the things you've failed to save.\n\n'I'll try,' you say. And for the first time in years, you mean it.",
+    "choices": [
+      {"letter": "A", "text": "Push to the temple—fast", "leads_to": "THERON_CH2_TEMPLE", "effects": {"strength": 1}, "requires": null},
+      {"letter": "B", "text": "Train him—teach him to survive", "leads_to": "THERON_CH2_TRAIN", "effects": {"intelligence": 1}, "requires": null},
+      {"letter": "C", "text": "Find a safe place—wait for the right moment", "leads_to": "THERON_CH2_WAIT", "effects": {"stealth": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH2_TRAINING": {
+    "id": "THERON_CH2_TRAINING",
+    "character": "THERON",
+    "description": "The Circle of Mages offers training—a way to master the void without being consumed. You accept, knowing it's probably a trap. But you need power.\n\nDays pass in isolation. The Archmage teaches you to feel the void—and to control it. Not to deny your darkness, but to shape it.\n\nYou learn to draw shadows like weapons. To step through darkness like doors. To speak in the language of nothing.\n\nBut during your training, you discover a secret: The Circle isn't noble. They've been manipulating the kingdom for centuries. The king didn't die in a fire—they killed him.\n\nAnd the queen? She's their puppet.\n\nEverything is a lie. The Cult. The Court. The Circle. Everyone serves the void in their own way.\n\nBut you also learn this: The seventh shard is hidden in the temple itself. The original seal, placed to prevent exactly this.",
+    "choices": [
+      {"letter": "A", "text": "Use the shard—destroy everything", "leads_to": "THERON_CH3_CONFRONTATION", "effects": {"void_magic": 3}, "requires": null},
+      {"letter": "B", "text": "Expose the Circle—their plan must end", "leads_to": "THERON_CH3_EXPOSE", "effects": {"intelligence": 2}, "requires": null},
+      {"letter": "C", "text": "Leave both sides—let them destroy each other", "leads_to": "THERON_CH3_ALONE", "effects": {"stealth": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH2_HEALER": {
+    "id": "THERON_CH2_HEALER",
+    "character": "THERON",
+    "description": "A healer lives in the hills—an old woman who remembers the old kingdom. She tends your wounds in silence, her hands glowing with light magic.\n\n'You carry the void,' she says. It's not a question.\n\nYou don't deny it. 'It won't let me die. I've tried.'\n\nShe laughs—a dry, humorless sound. 'It won't let you live either. It's waiting, Theron. Feeding on your pain. The day you stop suffering is the day it consumes you.'\n\nShe speaks of a solution: The Temple of Ash holds the only seal strong enough to contain the void permanently. An ancient binding, placed during the Sundering.\n\n'But it's a prison,' she warns. 'Once you enter, you cannot leave. The void will be sealed inside you forever.'\n\nIs that death? Or is it peace?",
+    "choices": [
+      {"letter": "A", "text": "Go to the temple—accept the seal", "leads_to": "THERON_CH3_SEAL", "effects": {"humanity": 2}, "requires": null},
+      {"letter": "B", "text": "Find another way—there has to be one", "leads_to": "THERON_CH2_TEMPLE", "effects": {"intelligence": 1}, "requires": null},
+      {"letter": "C", "text": "Ignore her—keep fighting", "leads_to": "THERON_CH2_TEMPLE", "effects": {"strength": 1}, "requires": null}
+    ]
+  },
+  "THERON_CH3_BATTLE": {
+    "id": "THERON_CH3_BATTLE",
+    "character": "THERON",
+    "description": "You charge across the chamber, your blade aimed at Vespera's heart. She doesn't move—doesn't even flinches.\n\nHer hand catches your sword. The blade stops an inch from her chest.\n\n'Such anger,' she whispers. 'Is it for me? Or for yourself?'\n\nShadows wrap around you. Not attacking—embracing. The void recognizes its own.\n\n'You can't kill me, Theron. I'm part of you now. I've always been part of you—the part you left in that burning palace.'\n\nShe releases you. You stagger back, weapon raised.\n\n'The Convergence will happen. One way or another. But you have a choice: be destroyed by it, or become its instrument.'\n\nAround you, the six shards begin to glow. The walls shake. The moors align.\n\nThe ritual is beginning.",
+    "choices": [
+      {"letter": "A", "text": "Destroy the shards—sacrifice yourself", "leads_to": "THERON_ENDING_REDEEMED", "effects": {"honor": 5}, "requires": null},
+      {"letter": "B", "text": "Claim the power—become the new master", "leads_to": "THERON_ENDING_COMMANDER", "effects": {"void_magic": 5}, "requires": null},
+      {"letter": "C", "text": "Flee—survive to fight another day", "leads_to": "THERON_ENDING_HOLLOW", "effects": {"humanity": -3}, "requires": null}
+    ]
+  },
+  "THERON_CH3_TALK": {
+    "id": "THERON_CH3_TALK",
+    "character": "THERON",
+    "description": "You lower your blade. Not surrender—strategy.\n\n'Elara,' you say. 'Remember that night? The fire? You reached for me. I couldn't reach back.'\n\nHer eye twitches. The darkness wavers.\n\n'I've spent years running,' you continue. 'Trying to forget. Drinking to silence the voices. But they're not silenced. They just get louder.'\n\nYou step closer. 'Let me help you. We can end this together—properly. No more sacrifices. No more children.'\n\nShe hesitates. For a moment, you see the girl she used to be—sweet, innocent, full of light.\n\n'There's no proper way,' she whispers. 'The void is here. It's always been here. It's in our blood—our family line.'\n\nYour blood. The Ashford line. You've carried the void since birth.\n\n'Then we carry it together,' you say. 'But choose for yourself. Choose to end it.'",
+    "choices": [
+      {"letter": "A", "text": "Help her destroy the shards—end the line", "leads_to": "THERON_ENDING_REDEEMED", "effects": {"honor": 4}, "requires": null},
+      {"letter": "B", "text": "Become her partner—guide her darkness", "leads_to": "THERON_ENDING_COMMANDER", "effects": {"charisma": 2}, "requires": null},
+      {"letter": "C", "text": "Kill her anyway—she's too far gone", "leads_to": "THERON_ENDING_HOLLOW", "effects": {"strength": 2}, "requires": null}
+    ]
+  },
+  "THERON_CH3_JOIN": {
+    "id": "THERON_CH3_JOIN",
+    "character": "THERON",
+    "description": "You kneel. The void rises to greet you—a wave of darkness that feels like coming home.\n\nElara touches your head, her fingers cold as ice.\n\n'Welcome home, brother. We've been waiting for you.'\n\nThe power floods through you—seven shards merged into one. You feel the seal breaking. The Beast stirring.\n\nAnd you understand what you've become: the Vessel. The new prison for the Void Beast. The door that's about to open.\n\n'Is this what you wanted?' you ask.\n\n'No,' she says. 'This is what we needed. The old gods must have a host. And you're stronger than any cultist.'\n\nThe convergence begins. Not with fire and destruction—but with silence. The void consumes everything. Your mind. Your memories. Your soul.\n\nBut in the end, you control it. You become its master.\n\nAnd that's when you realize: you were never the hero. You were always the monster. You just didn't know it yet.",
+    "choices": [
+      {"letter": "A", "text": "Embrace the darkness—become the Undying", "leads_to": "THERON_ENDING_COMMANDER", "effects": {"void_magic": 5}, "requires": null},
+      {"letter": "B", "text": "Destroy the shards from within", "leads_to": "THERON_ENDING_REDEEMED", "effects": {"honor": 3}, "requires": null},
+      {"letter": "C", "text": "Release the Beast—end everything", "leads_to": "THERON_ENDING_HOLLOW", "effects": {"humanity": -5}, "requires": null}
+    ]
+  },
+  "THERON_CH3_RITUAL": {
+    "id": "THERON_CH3_RITUAL",
+    "character": "THERON",
+    "description": "You watch from the shadows as Vespera begins the ritual.\n\nThe six shards rise from their pedestals, circling the dais. She stands at the center, her arms raised, her voice chanting in a language older than words.\n\nThe children wake—dozens of them. Their eyes glow with void light. They're not victims—they're components. Fuel for the machine.\n\nThe portal opens slowly—a tear in reality itself. Beyond it, you see the Beast. A darkness beyond darkness. A hunger beyond hunger.\n\nIt looks at you.\n\nIt sees you.\n\n'Join us,' it whispers. 'You've always been ours.'\n\nYou could run. Let it consume the world. But then you remember Princess Elara—the child she used to be. The sister you couldn't save.\n\nNo more.",
+    "choices": [
+      {"letter": "A", "text": "Interrupt the ritual—sacrifice yourself", "leads_to": "THERON_ENDING_REDEEMED", "effects": {"honor": 5}, "requires": null},
+      {"letter": "B", "text": "Claim the portal—become the Beast's voice", "leads_to": "THERON_ENDING_COMMANDER", "effects": {"void_magic": 4}, "requires": null},
+      {"letter": "C", "text": "Flee—the world isn't worth saving", "leads_to": "THERON_ENDING_HOLLOW", "effects": {"humanity": -2}, "requires": null}
+    ]
+  },
+  "THERON_CH3_SEAL": {
+    "id": "THERON_CH3_SEAL",
+    "character": "THERON",
+    "description": "The seal is ancient—a binding placed during the Sundering to contain the Void Beast forever. It sits at the heart of the temple, waiting.\n\nYou touch the stone. Visions flood your mind.\n\nThe Sundering. The original convergence. Countless deaths to seal away a god. And the knights who made that sacrifice—your ancestors.\n\nYou've been running from this your whole life. It was always your destiny.\n\nThe void inside you responds to the seal. It wants in. It wants rest.\n\nYou step into the chamber, and the seal closes around you. The darkness floods into you—concentrated, overwhelming. Your body becomes the prison. Your soul becomes the lock.\n\nYou scream—but the scream becomes silence. The void becomes you.\n\nAnd in that eternal moment, you feel peace. The first peace you've known since the fire.\n\nThey'll never escape. Neither will you.",
+    "choices": [
+      {"letter": "A", "text": "Accept the seal—you are the prison now", "leads_to": "THERON_ENDING_REDEEMED", "effects": {"honor": 5}, "requires": null},
+      {"letter": "B", "text": "Wait—eternity is a long time", "leads_to": "THERON_ENDING_HOLLOW", "effects": {"humanity": 2}, "requires": null},
+      {"letter": "C", "text": "Find release—in the void you are one", "leads_to": "THERON_ENDING_COMMANDER", "effects": {"void_magic": 3}, "requires": null}
+    ]
+  },
+  "THERON_CH3_CONFRONTATION": {
+    "id": "THERON_CH3_CONFRONTATION",
+    "character": "THERON",
+    "description": "The seventh shard burns in your hand. You've drawn upon power that should never exist—and you've made your choice.\n\nVespera sees you across the chamber. Her eyes widen.\n\n'You got the seventh,' she breathes. 'How?'\n\n'I am the seventh,' you say. 'I've always been. Since the fire. Since Elara died. Since I became darkness itself.'\n\nThe shard responds to your will. You could destroy the Cult. All of them. The entire temple. Everything.\n\nBut that would make you the monster they've been fighting.\n\nInstead, you focus the power into the seal—the ancient binding that held the Beast once. It won't hold forever, but it will hold.\n\n'No,' Vespera screams. 'Don't—'\n\nThe seal activates. The shards shatter. The portal collapses.\n\nAnd you're left standing in the ruins, holding nothing.\n\nThe Beast is sealed. The Cult is scattered. And you?\n\nYou're empty.",
+    "choices": [
+      {"letter": "A", "text": "Accept your fate—no regrets", "leads_to": "THERON_ENDING_REDEEMED", "effects": {"honor": 4}, "requires": null},
+      {"letter": "B", "text": "Walk away—find peace somewhere", "leads_to": "THERON_ENDING_HOLLOW", "effects": {"humanity": 1}, "requires": null},
+      {"letter": "C", "text": "Find new purpose—the knight continues", "leads_to": "THERON_ENDING_COMMANDER", "effects": {"charisma": 2}, "requires": null}
+    ]
+  },
+  "THERON_CH3_EXPOSE": {
+    "id": "THERON_CH3_EXPOSE",
+    "character": "THERON",
+    "description": "The truth is a weapon. And you've just loaded the cannon.\n\nYou return to Crownhaven with proof: documents, witnesses, the testimony of a dozen survivors. The Circle's conspiracy. The Cult's infiltration. Morgana's true allegiance.\n\nBut things have changed while you were gone. Queen Seraphina is dead. Assassinated. And in her place sits a new ruler—someone you've never seen.\n\nThe court is divided. The kingdom is on the brink of civil war.\n\n'Vespera demanded this,' Morgana says. 'The Cult wanted chaos. They needed the queen dead to begin the Convergence.'\n\nBut it's too late. The shards are aligning. The portal is opening.\n\nYou have one choice left: Use what you've learned to stop the Convergence, or use it to claim power.\n\nThe throne sits empty. And you have the strength to take it.",
+    "choices": [
+      {"letter": "A", "text": "Claim the throne—restore order", "leads_to": "THERON_ENDING_COMMANDER", "effects": {"charisma": 4}, "requires": null},
+      {"letter": "B", "text": "Expose everyone—let the kingdom decide", "leads_to": "THERON_ENDING_REDEEMED", "effects": {"honor": 3}, "requires": null},
+      {"letter": "C", "text": "Walk away—let it burn", "leads_to": "THERON_ENDING_HOLLOW", "effects": {"humanity": -2}, "requires": null}
+    ]
+  },
+  "THERON_CH3_ALONE": {
+    "id": "THERON_CH3_ALONE",
+    "character": "THERON",
+    "description": "You leave both sides to destroy each other. The Circle. The Cult. The Court. Let them tear each other apart.\n\nBut the world doesn't end. Hours pass, then days. The portal doesn't open. The Beast doesn't rise.\n\nSomething has changed. Vespera is dead—killed by her own followers. The shards have scattered. The Convergence has failed.\n\nYou wander the kingdom, aimless. The void inside you has quieted—or perhaps it's just sleeping.\n\nYou find yourself at the broken tavern where this all began. The mug is still there, waiting.\n\nYoupour it out.\n\nFor the first time in years, you don't reach for the drink. There's no peace in it. No forgetting. Only more dreams of flames.\n\nBut perhaps there's something else. Perhaps there's the beginning of a different path.\n\nYou leave the tavern. The road stretches ahead. And for the first time in years, you don't know where it leads.\n\nThat's okay. You'll figure it out as you go.",
+    "choices": [
+      {"letter": "A", "text": "Move forward—a new beginning", "leads_to": "THERON_ENDING_REDEEMED", "effects": {"honor": 2}, "requires": null},
+      {"letter": "B", "text": "Find purpose—become a protector", "leads_to": "THERON_ENDING_COMMANDER", "effects": {"charisma": 2}, "requires": null},
+      {"letter": "C", "text": "Fade away—the void is patient", "leads_to": "THERON_ENDING_HOLLOW", "effects": {"humanity": 1}, "requires": null}
+    ]
+  },
+  "THERON_ENDING_REDEEMED": {
+    "id": "THERON_ENDING_REDEEMED",
+    "character": "THERON",
+    "description": "You sacrifice yourself to save the world. It's the only noble thing you've ever done.\n\nThe void consumes you—or perhaps you become it. Either way, the Beast is sealed. The Cult is destroyed. The children are saved.\n\nIn the final moment, you see Princess Elara—not the monster she became, but the child she was. She's reaching for you. And this time, you reach back.\n\n'Thank you,' she whispers. 'For not giving up on me.'\n\nYou smile. 'I never gave up on myself. I just didn't know it yet.'\n\nThe darkness takes you. But it's not empty. It's not suffering. It's rest.\n\nThe kingdom calls you a hero. They build statues. They write songs. But you don't hear them. You're beyond their praise, beyond their blame.\n\nIn the void, you watch. And wait. And protect.\n\nPerhaps one day, you'll be called again. And perhaps next time, you'll be ready.",
+    "ending": "REDEEMED",
+    "choices": []
+  },
+  "THERON_ENDING_COMMANDER": {
+    "id": "THERON_ENDING_COMMANDER",
+    "character": "THERON",
+    "description": "You claim power. It's what you've always been, perhaps—the monster in the shadows, waiting to be unleashed.\n\nWith the void at your command, you become something more than a knight. You become a ruler. The kingdom kneelsto you—not because they want to, but because they have no choice.\n\nThe Cult is scattered. The Circle is broken. The court is your tool. And you sit upon the throne, looking down at a world that fears you.\n\nIs this redemption? No. It's something else. Something darker.\n\nBut you rule with a firm hand. No chaos. No Cults. No dangerous magic. The kingdom is safe—so safe it chills.\n\nAnd sometimes, late at night, when you're alone in the throne room, you feel the void moving. It wants more. It always wants more.\n\nPerhaps one day, you'll lose yourself entirely. Become the very thing you fought. But not today.\n\nToday, you rule. And that's enough.",
+    "ending": "COMMANDER",
+    "choices": []
+  },
+  "THERON_ENDING_HOLLOW": {
+    "id": "THERON_ENDING_HOLLOW",
+    "character": "THERON",
+    "description": "You survive. That's all. You always said you would.\n\nThe world burns around you. The Cult rises. The Circle falls. The kingdom descends into chaos. And you walk away, leaving nothing but footprints in the ash.\n\nThe void lives inside you—patient, hungry, waiting. You've learned to feed it just enough to keep it quiet. Other people's pain. Other people's sacrifices. Other people's children.\n\nYou don't dream anymore. The flames have stopped. Elara's voice has faded. But something else lives in your sleep: a vast darkness, endless and cold. It speaks in a language you almost understand.\n\n'Not yet,' it whispers. 'But soon.'\n\nYou wander the roads, looking for something you'll never find. A purpose. A peace. An end.\n\nBut the void doesn't end. It just waits.\n\nAnd one day, when you've finally lost everything else, when there's nothing left to feed on but your own soul, it'll be waiting.\n\nThe Hollow Knight walks forever. And the void is his kingdom.",
+    "ending": "HOLLOW",
+    "choices": []
+  }
+}
