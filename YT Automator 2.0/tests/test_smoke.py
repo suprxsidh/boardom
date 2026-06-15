@@ -126,3 +126,22 @@ def test_run_logger_writes_jsonl_with_all_fields():
         assert "audio_path" in data
         assert "subtitle_path" in data
         assert data["upload_success"] is True
+
+
+from yt_automator.providers.wikimedia_provider import WikimediaProvider
+
+
+def test_wikimedia_allows_cc0():
+    assert WikimediaProvider._is_license_allowed("CC0") is True
+
+
+def test_wikimedia_allows_cc_by():
+    assert WikimediaProvider._is_license_allowed("CC BY 4.0") is True
+
+
+def test_wikimedia_blocks_all_rights_reserved():
+    assert WikimediaProvider._is_license_allowed("All Rights Reserved") is False
+
+
+def test_wikimedia_blocks_unknown():
+    assert WikimediaProvider._is_license_allowed("Unknown") is False
