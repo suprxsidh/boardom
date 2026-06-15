@@ -16,16 +16,8 @@ class SubtitleEngine:
             result = self._model.transcribe(str(audio_path), word_timestamps=True)
             return result.get("segments", [])
         except Exception as exc:
-            print(f"[WARN] Whisper failed, using synthetic subtitles: {exc}")
-            return [
-                {
-                    "words": [
-                        {"word": "Quick", "start": 0.0, "end": 0.9},
-                        {"word": "story", "start": 0.9, "end": 1.8},
-                        {"word": "today", "start": 1.8, "end": 2.8},
-                    ]
-                }
-            ]
+            print(f"[WARN] Whisper failed, returning empty segments: {exc}")
+            return []
 
     def write_ass(self, segments: list[dict], output_path: Path) -> Path:
         # Alignment=2: bottom-center. MarginV=120: 120px from bottom edge of 1920px frame.
@@ -55,6 +47,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
     @staticmethod
     def _fmt_ts(value: float) -> str:
+        value = max(0.0, value)
         hours = int(value // 3600)
         minutes = int((value % 3600) // 60)
         seconds = int(value % 60)

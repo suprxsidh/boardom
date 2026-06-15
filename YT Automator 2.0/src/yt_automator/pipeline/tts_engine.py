@@ -3,12 +3,17 @@ from __future__ import annotations
 import asyncio
 import subprocess
 from pathlib import Path
+from typing import Any, Coroutine, TypeVar
 
 import edge_tts
+
+_T = TypeVar("_T")
 
 
 class TTSEngine:
     def __init__(self, voices: list[str]):
+        if not voices:
+            raise ValueError("TTSEngine requires at least one voice.")
         self.voices = voices
 
     async def synthesize(self, text: str, output_path: Path, voice: str | None = None) -> Path:
@@ -19,11 +24,17 @@ class TTSEngine:
             return output_path
         except Exception as exc:
             print(f"[WARN] edge-tts failed, using silent fallback: {exc}")
-            self._create_silent_fallback(output_path)
+            try:
+                self._create_silent_fallback(output_path)
+            except Exception as fb_exc:
+                raise RuntimeError(
+                    f"Both edge-tts and ffmpeg silent fallback failed: {fb_exc}"
+                ) from fb_exc
             return output_path
 
     @staticmethod
     def _create_silent_fallback(output_path: Path) -> None:
+        output_path.parent.mkdir(parents=True, exist_ok=True)
         subprocess.run(
             [
                 "ffmpeg", "-y", "-f", "lavfi",
@@ -37,5 +48,6 @@ class TTSEngine:
         )
 
 
-def run_async(coro):
+def run_async(coro: Coroutine[Any, Any, _T]) -> _T:
+    """Run a coroutine synchronously. Must not be called from inside a running event loop."""
     return asyncio.run(coro)

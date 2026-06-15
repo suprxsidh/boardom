@@ -178,3 +178,23 @@ def test_write_ass_produces_valid_file():
     assert fields[18] == "2", f"Expected Alignment=2 (bottom-center), got {fields[18]}"
     assert "HELLO" in content
     assert "WORLD" in content
+
+
+# --- Task 6: TTS engine ---
+from yt_automator.pipeline.tts_engine import TTSEngine
+
+
+def test_tts_engine_rejects_empty_voices():
+    import pytest
+    with pytest.raises(ValueError, match="at least one voice"):
+        TTSEngine(voices=[])
+
+
+def test_write_ass_empty_segments_writes_header_only():
+    engine = SubtitleEngine()
+    with tempfile.TemporaryDirectory() as tmp:
+        out = Path(tmp) / "empty.ass"
+        engine.write_ass([], out)
+        content = out.read_text()
+    assert "[Script Info]" in content
+    assert "Dialogue:" not in content
