@@ -10,6 +10,9 @@ def generate_publish_schedule(
     timezone_name: str,
     count: int,
 ) -> list[str]:
+    if not daily_slots:
+        raise ValueError("daily_slots cannot be empty")
+
     timezone = pytz.timezone(timezone_name)
     now_local = datetime.now(timezone)
 
