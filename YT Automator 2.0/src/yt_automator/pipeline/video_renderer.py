@@ -1,9 +1,12 @@
 from __future__ import annotations
 
+import logging
 import subprocess
 from pathlib import Path
 
 from yt_automator.models import MediaAsset, RenderResult
+
+_log = logging.getLogger(__name__)
 
 
 class VideoRenderer:
@@ -26,11 +29,12 @@ class VideoRenderer:
         duration = self._probe_duration(voice_audio_path)
         frame_count = max(int(duration * self.fps), 24)
 
+        w, h = self.shorts_size
         filter_chain = (
             "scale=8000:-1,"
             f"zoompan=z='min(zoom+0.00055,1.12)':d={frame_count}:"
-            "x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1080x1920:fps=24,"
-            f"ass=filename='{subtitle_path.as_posix()}'"
+            f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={w}x{h}:fps={self.fps},"
+            + self._escape_filter_path(subtitle_path)
         )
 
         command = [
@@ -51,8 +55,8 @@ class VideoRenderer:
             subprocess.run(command, check=True, capture_output=True)
         except subprocess.CalledProcessError as exc:
             stderr = exc.stderr.decode("utf-8", errors="replace")
-            if "No such filter" in stderr or "ass" in stderr:
-                print("[WARN] ffmpeg ass filter unavailable, retrying without subtitles")
+            if "No such filter" in stderr or "filter 'ass'" in stderr or "ass filter" in stderr:
+                _log.warning("ffmpeg ass filter unavailable, retrying without subtitles")
                 self._render_without_subtitles(
                     primary, voice_audio_path, music_path, duration, output_path
                 )
@@ -96,6 +100,13 @@ class VideoRenderer:
             ) from inner_exc
 
     @staticmethod
+    def _escape_filter_path(path: Path) -> str:
+        s = path.as_posix()
+        for ch in ("\\", "'", ":", " "):
+            s = s.replace(ch, "\\" + ch)
+        return f"ass=filename={s}"
+
+    @staticmethod
     def _probe_duration(audio_path: Path) -> float:
         command = [
             "ffprobe", "-v", "error",
@@ -106,5 +117,8 @@ class VideoRenderer:
         try:
             output = subprocess.check_output(command).decode("utf-8").strip()
             return max(float(output), 3.0)
-        except Exception:
+        except (subprocess.CalledProcessError, ValueError) as exc:
+            _log.warning("ffprobe failed (%s), defaulting to 6.0s — output may be truncated", exc)
             return 6.0
+        except FileNotFoundError as exc:
+            raise RuntimeError("ffprobe not found — install ffmpeg to use the video renderer") from exc
