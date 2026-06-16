@@ -346,3 +346,15 @@ def test_cli_parser_doctor_strict():
     parser = build_parser()
     args = parser.parse_args(["doctor", "--strict"])
     assert args.strict is True
+
+
+# --- Task 12: channel configs ---
+def test_channel_count_and_names():
+    from yt_automator.pipeline.orchestrator import PipelineOrchestrator
+    from yt_automator.utils.paths import get_repo_root
+    orch = PipelineOrchestrator(get_repo_root())
+    channels = orch.list_channels()
+    assert len(channels) == 3
+    assert "biology" in channels
+    assert "physics" in channels
+    assert "history" in channels

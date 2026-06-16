@@ -1,0 +1,14 @@
+{
+  "subtitle_model": "tiny.en",
+  "gemini_model": "gemini-2.0-flash-lite",
+  "ollama_model": null,
+  "ollama_base_url": "http://localhost:11434",
+  "voices": [
+    "en-US-GuyNeural",
+    "en-US-JennyNeural",
+    "en-GB-RyanNeural",
+    "en-GB-SoniaNeural",
+    "en-AU-WilliamNeural",
+    "en-CA-LiamNeural"
+  ]
+}
