@@ -252,3 +252,28 @@ def test_fallback_always_passes_qa_gate():
         pkg = gen._fallback_package(channel_config, strategy_data, None)
         count = word_count(pkg.script)
         assert count >= 75, f"Fallback script too short for topic '{topic}': {count} words"
+
+
+# --- Task 9: YouTube client dry-run ---
+from yt_automator.pipeline.youtube_client import YouTubeClient
+
+
+def test_youtube_dry_run_returns_success():
+    with tempfile.TemporaryDirectory() as tmp:
+        client = YouTubeClient(
+            credentials_path=Path(tmp) / "creds.json",
+            token_path=Path(tmp) / "token.json",
+        )
+        result = client.upload_short(
+            video_path=Path(tmp) / "video.mp4",
+            title="Test",
+            description="desc",
+            tags=["tag"],
+            category_id="27",
+            privacy_status="public",
+            publish_at=None,
+            dry_run=True,
+        )
+    assert result.success is True
+    assert result.video_id == "DRYRUN"
+    assert result.video_url == "https://www.youtube.com/watch?v=DRYRUN"
