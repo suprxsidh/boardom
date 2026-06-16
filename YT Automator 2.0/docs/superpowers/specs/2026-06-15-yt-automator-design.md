@@ -19,7 +19,7 @@ Port the `youtube-automator` v2 reference codebase into `YT Automator 2.0/`, fix
 | physics | 27 | Counterintuitive physics, space science |
 | history | 27 | Historical deep-dives, forgotten stories |
 
-All channels use Asia/Kolkata timezone, 5 daily slots (09:00, 12:00, 15:00, 18:00, 21:00).
+All channels use Asia/Kolkata timezone, 5 daily slots (17:30, 19:00, 20:30, 22:00, 23:30).
 
 ---
 
