@@ -29,6 +29,8 @@ def build_parser() -> argparse.ArgumentParser:
     daemon_cmd = sub.add_parser("daemon", help="Run scheduler for one channel")
     daemon_cmd.add_argument("channel")
     daemon_cmd.add_argument("--dry-run", action="store_true")
+    daemon_cmd.add_argument("--run-now", action="store_true",
+                            help="Run once immediately before starting the scheduler loop")
 
     daemon_all_cmd = sub.add_parser("daemon-all", help="Run scheduler for all channels")
     daemon_all_cmd.add_argument("--dry-run", action="store_true")
@@ -47,7 +49,12 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main() -> None:
     args = build_parser().parse_args()
-    orchestrator = PipelineOrchestrator(get_repo_root())
+    try:
+        orchestrator = PipelineOrchestrator(get_repo_root())
+    except Exception as exc:
+        print(f"[FAIL] Could not initialize: {exc}")
+        print("[INFO] Run 'yta doctor' to diagnose setup issues.")
+        raise SystemExit(1)
 
     if args.command == "list-channels":
         for ch in orchestrator.list_channels():
@@ -70,7 +77,7 @@ def main() -> None:
         )
 
     elif args.command == "daemon":
-        _run_daemon(orchestrator, args.channel, args.dry_run)
+        _run_daemon(orchestrator, args.channel, args.dry_run, run_now=args.run_now)
 
     elif args.command == "daemon-all":
         _run_daemon_all(orchestrator, args.dry_run, args.run_now)
@@ -83,19 +90,37 @@ def main() -> None:
         raise SystemExit(orchestrator.run_doctor(strict=args.strict))
 
 
-def _run_daemon(orchestrator: PipelineOrchestrator, channel: str, dry_run: bool) -> None:
+def _ist_slot_to_local(slot: str) -> str:
+    """Convert 'HH:MM' in IST to 'HH:MM' in the machine's local timezone."""
+    import pytz
+    from datetime import datetime
+    hour, minute = (int(p) for p in slot.split(":"))
+    ist = pytz.timezone("Asia/Kolkata")
+    now = datetime.now()
+    ist_dt = ist.localize(datetime(now.year, now.month, now.day, hour, minute))
+    local_dt = ist_dt.astimezone()
+    return f"{local_dt.hour:02d}:{local_dt.minute:02d}"
+
+
+def _run_daemon(orchestrator: PipelineOrchestrator, channel: str, dry_run: bool, run_now: bool = False) -> None:
     cfg = orchestrator.get_channel_config(channel)
     slots = cfg["youtube"]["daily_slots"]
-    print(f"[INFO] Starting daemon for {channel}. Daily slots: {', '.join(slots)} IST")
+    print(f"[INFO] Starting daemon for {channel}. Daily slots (IST): {', '.join(slots)}")
     for slot in slots:
-        schedule.every().day.at(slot).do(
+        local_slot = _ist_slot_to_local(slot)
+        schedule.every().day.at(local_slot).do(
             orchestrator.run_once,
             channel_name=channel, count=1, schedule=False, dry_run=dry_run,
         )
-    orchestrator.run_once(channel_name=channel, count=1, schedule=False, dry_run=dry_run)
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+    if run_now:
+        orchestrator.run_once(channel_name=channel, count=1, schedule=False, dry_run=dry_run)
+    try:
+        while True:
+            schedule.run_pending()
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("\n[INFO] Daemon stopped.")
+        raise SystemExit(0)
 
 
 def _run_daemon_all(
@@ -111,12 +136,17 @@ def _run_daemon_all(
         slots = cfg["youtube"]["daily_slots"]
         print(f"[INFO] {channel}: {', '.join(slots)}")
         for slot in slots:
-            schedule.every().day.at(slot).do(
+            local_slot = _ist_slot_to_local(slot)
+            schedule.every().day.at(local_slot).do(
                 orchestrator.run_once,
                 channel_name=channel, count=1, schedule=False, dry_run=dry_run,
             )
     if run_now:
         orchestrator.run_batch(channels=channels, count=1, schedule=False, dry_run=dry_run)
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+    try:
+        while True:
+            schedule.run_pending()
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("\n[INFO] Daemon stopped.")
+        raise SystemExit(0)
