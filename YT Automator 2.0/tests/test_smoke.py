@@ -321,3 +321,28 @@ def test_orchestrator_run_doctor_returns_int():
         result = orch.run_doctor(strict=False)
         assert isinstance(result, int)
         assert result in (0, 1)
+
+
+# --- Task 11: CLI parser ---
+from yt_automator.cli import build_parser
+
+
+def test_cli_parser_list_channels():
+    parser = build_parser()
+    args = parser.parse_args(["list-channels"])
+    assert args.command == "list-channels"
+
+
+def test_cli_parser_run_defaults():
+    parser = build_parser()
+    args = parser.parse_args(["run", "biology"])
+    assert args.channel == "biology"
+    assert args.count == 1
+    assert args.dry_run is False
+    assert args.schedule_publish is False
+
+
+def test_cli_parser_doctor_strict():
+    parser = build_parser()
+    args = parser.parse_args(["doctor", "--strict"])
+    assert args.strict is True
