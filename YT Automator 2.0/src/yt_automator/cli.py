@@ -44,6 +44,35 @@ def build_parser() -> argparse.ArgumentParser:
     doctor_cmd = sub.add_parser("doctor", help="Validate setup and credentials")
     doctor_cmd.add_argument("--strict", action="store_true")
 
+    provision_cmd = sub.add_parser(
+        "provision-channel",
+        help="Fully provision a new channel (gcloud + Playwright + OAuth). "
+             "Only needs Gmail + YouTube channel to already exist.",
+    )
+    provision_cmd.add_argument("name", help="Channel slug (e.g. history, space)")
+    provision_cmd.add_argument("email", help="Gmail that owns the YouTube channel")
+
+    sub.add_parser(
+        "analytics",
+        help="Poll YouTube Analytics for completed uploads and update RL bandit weights",
+    )
+
+    setup_cmd = sub.add_parser(
+        "setup-channel",
+        help="Wire up a new channel from a downloaded GCP credentials JSON",
+    )
+    setup_cmd.add_argument("name", help="Channel slug (e.g. history, space, finance)")
+    setup_cmd.add_argument("email", help="Gmail address that owns the YouTube channel")
+    setup_cmd.add_argument(
+        "credentials",
+        help="Path to the client_secret_*.json downloaded from GCP",
+    )
+    setup_cmd.add_argument(
+        "--template",
+        help="Existing channel to copy config from (default: auto-detected)",
+        default=None,
+    )
+
     return parser
 
 
@@ -82,12 +111,35 @@ def main() -> None:
     elif args.command == "daemon-all":
         _run_daemon_all(orchestrator, args.dry_run, args.run_now)
 
+    elif args.command == "analytics":
+        orchestrator.run_analytics()
+        print("[OK] Analytics collection complete")
+
     elif args.command == "record-reward":
         orchestrator.record_manual_reward(args.channel, args.arm, args.reward)
         print("[OK] Reward recorded")
 
     elif args.command == "doctor":
         raise SystemExit(orchestrator.run_doctor(strict=args.strict))
+
+    elif args.command == "provision-channel":
+        from yt_automator.pipeline.channel_provision import provision_channel
+        provision_channel(
+            repo_root=get_repo_root(),
+            channel_name=args.name,
+            email=args.email,
+        )
+
+    elif args.command == "setup-channel":
+        from yt_automator.pipeline.channel_setup import setup_channel
+        from pathlib import Path as _Path
+        setup_channel(
+            repo_root=get_repo_root(),
+            channel_name=args.name,
+            email=args.email,
+            credentials_src=_Path(args.credentials).expanduser().resolve(),
+            template=args.template,
+        )
 
 
 def _ist_slot_to_local(slot: str) -> str:

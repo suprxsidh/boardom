@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import difflib
+import re
 from pathlib import Path
 
 
@@ -44,6 +46,73 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
         output_path.write_text(content, encoding="utf-8")
         return output_path
+
+    @staticmethod
+    def correct_against_script(segments: list[dict], original_script: str) -> list[dict]:
+        """Align Whisper word texts against the original script to fix mis-hearings.
+
+        Keeps Whisper timing intact; replaces wrong/cased words with the original
+        script's tokens wherever SequenceMatcher finds a match or same-length swap.
+        """
+        flat: list[dict] = [w for seg in segments for w in seg.get("words", [])]
+        if not flat:
+            return segments
+
+        def alpha(s: str) -> str:
+            return re.sub(r"[^a-z'-]", "", s.lower())
+
+        orig_tokens: list[str] = re.findall(r"[A-Za-z'-]+", original_script)
+        w_keys = [alpha(w.get("word", "")) for w in flat]
+        o_keys = [alpha(t) for t in orig_tokens]
+
+        matcher = difflib.SequenceMatcher(None, w_keys, o_keys, autojunk=False)
+        for op, i1, i2, j1, j2 in matcher.get_opcodes():
+            if op == "equal":
+                for i, j in zip(range(i1, i2), range(j1, j2)):
+                    flat[i]["word"] = orig_tokens[j]   # fix casing / punctuation
+            elif op == "replace" and (i2 - i1) == (j2 - j1):
+                for i, j in zip(range(i1, i2), range(j1, j2)):
+                    flat[i]["word"] = orig_tokens[j]   # fix mis-heard word
+        return segments
+
+    @classmethod
+    def build_drawtext_filter(cls, segments: list[dict]) -> str:
+        """Build an ffmpeg drawtext filter chain for word-by-word subtitles.
+
+        Uses only libfreetype (always available in Homebrew ffmpeg) — no libass needed.
+        """
+        parts: list[str] = []
+        for segment in segments:
+            for word in segment.get("words", []):
+                start = float(word["start"])
+                end = float(word["end"])
+                raw = str(word["word"]).upper().strip()
+                if not raw:
+                    continue
+                text = cls._escape_drawtext(raw)
+                dt = (
+                    f"drawtext="
+                    f"text='{text}'"
+                    f":fontsize=96"
+                    f":x=(w-tw)/2"
+                    f":y=h-th-120"
+                    f":fontcolor=white"
+                    f":borderw=6"
+                    f":bordercolor=0x101010@FF"
+                    f":bold=1"
+                    f":enable='between(t,{start:.3f},{end:.3f})'"
+                )
+                parts.append(dt)
+        return ",".join(parts) if parts else "null"
+
+    @staticmethod
+    def _escape_drawtext(text: str) -> str:
+        """Escape special chars for ffmpeg drawtext option values."""
+        text = text.replace("\\", "\\\\")
+        text = text.replace("'", "’")   # replace apostrophe with curly quote
+        text = text.replace(":", "\\:")
+        text = text.replace("%", "\\%")
+        return text
 
     @staticmethod
     def _fmt_ts(value: float) -> str:

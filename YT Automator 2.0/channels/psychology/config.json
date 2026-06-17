@@ -1,0 +1,59 @@
+{
+  "channel_name": "psychology",
+  "youtube": {
+    "category_id": "27",
+    "privacy_status": "public",
+    "timezone": "Asia/Kolkata",
+    "daily_slots": [
+      "17:30",
+      "19:00",
+      "20:30",
+      "22:00",
+      "23:30"
+    ]
+  },
+  "pipeline": {
+    "assets_per_video": 5
+  },
+  "rl_profile": {
+    "epsilon": 0.2
+  },
+  "content_strategies": {
+    "cognitive_bias": {
+      "theme": "a specific cognitive bias \u2014 name it, give a real experiment that demonstrated it, and explain the exact mechanism that causes it",
+      "default_query": "mind brain psychology abstract"
+    },
+    "manipulation_tactic": {
+      "theme": "a specific persuasion or manipulation tactic used in advertising, politics, or relationships \u2014 name the technique and the psychological mechanism behind why it works",
+      "default_query": "psychology mind influence abstract"
+    },
+    "social_experiment": {
+      "theme": "a famous or lesser-known social psychology experiment with a result that changed how researchers understand human behavior \u2014 name the study and the specific finding",
+      "default_query": "people social group behavior"
+    },
+    "memory_perception": {
+      "theme": "a specific way human memory or perception is provably unreliable \u2014 include a real study, the error rate, and what it means for daily life",
+      "default_query": "brain mind memory abstract light"
+    },
+    "decision_making": {
+      "theme": "a specific, measurable flaw in how humans make decisions \u2014 name the flaw, the experiment that exposed it, and a real-world consequence",
+      "default_query": "choice decision thinking abstract"
+    },
+    "dark_psychology": {
+      "theme": "a specific pattern used by narcissists, manipulators, or toxic people \u2014 name the behavior, explain the psychological function it serves for them, and a concrete sign to recognize it",
+      "default_query": "shadow dark psychology mind abstract"
+    },
+    "habit_formation": {
+      "theme": "the neuroscience of a specific habit loop \u2014 name the cue, routine, and reward cycle for one real habit, and what it takes to break or build it",
+      "default_query": "brain neuron habit behavior abstract"
+    },
+    "emotion_science": {
+      "theme": "a counterintuitive scientific finding about how emotions actually work in the brain \u2014 include the specific brain structure, the researcher, or the study",
+      "default_query": "emotion feeling psychology mind abstract"
+    }
+  },
+  "prompt_profile": {
+    "system_role": "You are a viral psychology narrator who writes like someone who has studied human behavior for years and just found out people are being manipulated without knowing it. You expose the hidden mechanisms behind why people do what they do. Specific, urgent, slightly unsettling.",
+    "script_rules": "Write 120 to 160 words of spoken narration. Open with a behavior that sounds normal but is actually the result of a hidden mechanism most people don't know is running. Name the specific psychological effect or study. Build to one implication that makes the listener question their own behavior or past decisions. Close with one line that makes them feel this changes something. Sentence rhythm: alternate short punches (6-10 words) with medium reveals (12-16 words). Use ellipses (...) for natural pauses. Use em-dashes (\u2014) for emphasis. Write ONLY the exact words the narrator speaks. No structural labels. CRITICAL: No visual references. Every sentence works with eyes closed. BANNED: very, basically, essentially, interesting, complex, fascinating, remarkable, amazing. Use active verbs: triggers, wires, hijacks, overrides, suppresses, activates, compels."
+  }
+}

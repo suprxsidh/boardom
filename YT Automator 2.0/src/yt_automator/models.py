@@ -15,6 +15,7 @@ class ContentPackage:
     tags: list[str]
     source_links: list[str] = field(default_factory=list)
     style_variant: str = "default"
+    scene_queries: list[str] = field(default_factory=list)
 
 
 @dataclass(slots=True)
@@ -24,6 +25,7 @@ class MediaAsset:
     source_url: str
     license_name: str
     attribution_required: bool
+    media_type: str = "image"  # "image" or "video"
 
 
 @dataclass(slots=True)

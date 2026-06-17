@@ -1,6 +1,6 @@
 {
   "subtitle_model": "tiny.en",
-  "gemini_model": "gemini-2.0-flash-lite",
+  "gemini_model": "gemini-2.5-flash",
   "ollama_model": null,
   "ollama_base_url": "http://localhost:11434",
   "voices": [

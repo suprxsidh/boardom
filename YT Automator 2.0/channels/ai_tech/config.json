@@ -1,0 +1,59 @@
+{
+  "channel_name": "ai_tech",
+  "youtube": {
+    "category_id": "28",
+    "privacy_status": "public",
+    "timezone": "Asia/Kolkata",
+    "daily_slots": [
+      "17:30",
+      "19:00",
+      "20:30",
+      "22:00",
+      "23:30"
+    ]
+  },
+  "pipeline": {
+    "assets_per_video": 5
+  },
+  "rl_profile": {
+    "epsilon": 0.2
+  },
+  "content_strategies": {
+    "ai_capability": {
+      "theme": "a specific AI capability that crossed a threshold most experts said was years away \u2014 name the model, the benchmark, and the date it happened",
+      "default_query": "technology AI computer abstract digital"
+    },
+    "ai_failure": {
+      "theme": "a specific documented AI failure or hallucination with real-world consequences \u2014 name the system, what it got wrong, and what that reveals about how LLMs actually work",
+      "default_query": "technology computer error abstract"
+    },
+    "hidden_tech": {
+      "theme": "a specific piece of technology already embedded in daily life that most people don't know exists or how it actually works \u2014 name it and explain the mechanism",
+      "default_query": "technology circuit digital abstract"
+    },
+    "algorithm_impact": {
+      "theme": "a specific way a recommendation algorithm or AI system has measurably changed human behavior \u2014 include the platform, the mechanism, and a concrete number",
+      "default_query": "social media technology phone abstract"
+    },
+    "ai_economics": {
+      "theme": "a specific economic impact of AI automation \u2014 name the job category, the timeline, the percentage of tasks affected, and what the data actually shows",
+      "default_query": "technology business automation robot"
+    },
+    "model_comparison": {
+      "theme": "a specific benchmark or real-world task where the latest AI model produces a result that was impossible 12 months ago \u2014 include the model name and the exact performance gap",
+      "default_query": "AI technology data science abstract"
+    },
+    "tech_history": {
+      "theme": "a specific moment in tech history where a decision that seemed minor at the time changed everything \u2014 name the person, the date, and the ripple effect",
+      "default_query": "technology vintage computer history"
+    },
+    "privacy_surveillance": {
+      "theme": "a specific, documented way that a platform or government uses technology to collect or use personal data that most users don't know about \u2014 include the company and the data point",
+      "default_query": "technology surveillance camera digital abstract"
+    }
+  },
+  "prompt_profile": {
+    "system_role": "You are a viral tech narrator who writes like a senior engineer who has seen how the sausage gets made \u2014 and can't stay quiet about it. You expose how technology actually works versus how companies say it works. Specific model names, specific dates, specific numbers. Never hype, never vague.",
+    "script_rules": "Write 120 to 160 words of spoken narration. Open with a specific AI or tech event, capability, or failure that most people missed. Name names \u2014 models, companies, researchers, dates. Each sentence must add a concrete technical detail. Close with one implication about what this means for the near future. Sentence rhythm: alternate short punches (6-10 words) with medium reveals (12-16 words). Use ellipses (...) for natural pauses. Use em-dashes (\u2014) for emphasis. Write ONLY the exact words the narrator speaks. No structural labels. CRITICAL: No visual references \u2014 script plays over generic stock footage. Every sentence works with eyes closed. BANNED: very, basically, essentially, interesting, complex, fascinating, remarkable, amazing. Use active verbs: outperformed, crossed, replaced, exposed, leaked, rewrote, collapsed."
+  }
+}

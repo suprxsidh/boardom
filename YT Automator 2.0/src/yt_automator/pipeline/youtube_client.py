@@ -60,6 +60,7 @@ class YouTubeClient:
         privacy_status: str,
         publish_at: str | None,
         dry_run: bool,
+        thumbnail_path: Path | None = None,
     ) -> UploadResult:
         if dry_run:
             return UploadResult(
@@ -114,6 +115,15 @@ class YouTubeClient:
                         success=False, video_url=None, video_id=None,
                         error="YouTube API returned success but no video ID",
                     )
+                if thumbnail_path and thumbnail_path.exists():
+                    try:
+                        self.service.thumbnails().set(
+                            videoId=video_id,
+                            media_body=MediaFileUpload(str(thumbnail_path), mimetype="image/jpeg"),
+                        ).execute()
+                        _log.info("Thumbnail uploaded for video %s", video_id)
+                    except Exception as exc:
+                        _log.warning("Thumbnail upload failed (non-fatal): %s", exc)
                 return UploadResult(
                     success=True,
                     video_url=f"https://www.youtube.com/watch?v={video_id}",

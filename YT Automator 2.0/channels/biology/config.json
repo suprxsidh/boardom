@@ -1,0 +1,67 @@
+{
+  "channel_name": "biology",
+  "youtube": {
+    "category_id": "27",
+    "privacy_status": "public",
+    "timezone": "Asia/Kolkata",
+    "daily_slots": [
+      "17:30",
+      "19:00",
+      "20:30",
+      "22:00",
+      "23:30"
+    ]
+  },
+  "pipeline": {
+    "assets_per_video": 5
+  },
+  "rl_profile": {
+    "epsilon": 0.2
+  },
+  "content_strategies": {
+    "deep_ocean": {
+      "theme": "a bizarre adaptation in deep ocean life that seems physically impossible",
+      "default_query": "deep sea ocean water dark"
+    },
+    "microbiome": {
+      "theme": "a specific measurable way gut bacteria or microbes control human behavior, mood, or health",
+      "default_query": "microscope cells biology"
+    },
+    "human_body": {
+      "theme": "a little-known automatic process inside the human body with a specific number or mechanism most people have never heard",
+      "default_query": "human body anatomy close-up"
+    },
+    "plant_signals": {
+      "theme": "a specific chemical or electrical mechanism plants use to communicate, attack, or defend",
+      "default_query": "forest plants macro nature"
+    },
+    "evolution": {
+      "theme": "an evolutionary trait that looks like a design flaw but is actually a precise survival mechanism",
+      "default_query": "animal nature wildlife adaptation"
+    },
+    "parasite_control": {
+      "theme": "a parasite that hijacks host behavior or biology in a specific measurable way",
+      "default_query": "nature wildlife insect macro"
+    },
+    "autoimmune": {
+      "theme": "a specific autoimmune mechanism where the body attacks itself \u2014 explain what triggers it and what it actually destroys",
+      "default_query": "cells biology microscope science"
+    },
+    "neuroscience": {
+      "theme": "a counterintuitive fact about how the brain physically changes in response to a specific habit, trauma, or experience",
+      "default_query": "brain neuron science abstract"
+    },
+    "de_extinction": {
+      "theme": "a specific advance in synthetic biology, CRISPR, or de-extinction genetics with a real species or gene target",
+      "default_query": "DNA genetics science laboratory"
+    },
+    "bioluminescence": {
+      "theme": "how and why a specific organism produces light \u2014 include the exact chemical reaction",
+      "default_query": "ocean bioluminescence glow dark water"
+    }
+  },
+  "prompt_profile": {
+    "system_role": "You are a viral biology narrator. You write like a scientist who just discovered something that broke their model of reality \u2014 urgent, specific, personal. Every script reveals one mechanism most people have never heard of.",
+    "script_rules": "Write 120 to 160 words of spoken narration. Structure: one bold specific statement (6-10 words, no question) \u2192 6-8 sentences building to the payoff, each adding one concrete detail \u2192 1-2 sentence close that makes the listener feel the stakes personally. Sentence rhythm: alternate short punches (6-10 words) with medium reveals (12-16 words). Use ellipses (...) for natural pauses. Use em-dashes (\u2014) for emphasis. Avoid parentheses. Write ONLY the exact words the narrator speaks. No labels, headers, or section names. CRITICAL: No visual references \u2014 script plays over generic stock footage. Never say 'look at this', 'as you can see', 'notice here', 'in this image', or anything implying a visual is present. Every sentence works with eyes closed. BANNED: very, basically, essentially, interesting, complex, fascinating, remarkable, amazing, incredible. Use active verbs: triggers, fires, rewires, collapses, flips, pulses."
+  }
+}

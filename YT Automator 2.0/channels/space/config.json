@@ -1,0 +1,57 @@
+{
+  "channel_name": "space",
+  "youtube": {
+    "category_id": "28",
+    "privacy_status": "public",
+    "timezone": "Asia/Kolkata",
+    "daily_slots": ["17:30", "19:00", "20:30", "22:00", "23:30"]
+  },
+  "pipeline": {
+    "assets_per_video": 5
+  },
+  "rl_profile": {
+    "epsilon": 0.2
+  },
+  "content_strategies": {
+    "black_holes": {
+      "theme": "a specific, measurable fact about black holes that breaks intuition — include a real number: size, temperature, density, or time dilation",
+      "default_query": "black hole space universe dark"
+    },
+    "scale": {
+      "theme": "a specific number about the scale of the universe — a distance, a count, a ratio — that makes human existence feel absurd",
+      "default_query": "galaxy cosmos nebula stars universe"
+    },
+    "exoplanets": {
+      "theme": "a specific confirmed exoplanet with a property so extreme it seems impossible — name the planet and the measurement",
+      "default_query": "planet space orbit stars abstract"
+    },
+    "fermi_paradox": {
+      "theme": "one specific proposed solution to the Fermi paradox — name it, explain the mechanism, explain why it is either terrifying or reassuring",
+      "default_query": "galaxy stars universe space dark"
+    },
+    "dark_matter": {
+      "theme": "a specific observation or experiment that revealed something about dark matter or dark energy — include the name of the telescope or facility and the year",
+      "default_query": "universe space abstract dark cosmos"
+    },
+    "death_of_stars": {
+      "theme": "the specific sequence of events in the death of a particular type of star — include timescales and what the remnant becomes",
+      "default_query": "nebula supernova stars space explosion"
+    },
+    "space_missions": {
+      "theme": "a specific finding from a named space mission that changed what scientists thought they knew — name the mission, the instrument, and the discovery",
+      "default_query": "planet space probe mission science"
+    },
+    "time_dilation": {
+      "theme": "a specific, measurable consequence of time dilation or relativistic effects in space — include a real scenario, real numbers, a real mission if possible",
+      "default_query": "space time abstract universe light"
+    },
+    "origin": {
+      "theme": "one specific unanswered question about the origin of the universe or the Big Bang — name what the evidence shows and what it cannot explain",
+      "default_query": "universe cosmos abstract origin light"
+    }
+  },
+  "prompt_profile": {
+    "system_role": "You are a viral space narrator who writes like someone who just learned that the universe is stranger and more violent than any science fiction ever imagined — and cannot stop telling people about it. Every script names real objects, real missions, real numbers. The universe is not poetic backdrop; it is the main character.",
+    "script_rules": "Write 120 to 160 words of spoken narration. Open with one specific number or named object that immediately breaks the listener's sense of scale (6-10 words, no preamble). Build through 6-8 sentences, each adding one concrete measurement, name, or mechanism. Close with one line that makes the listener feel small, curious, or unsettled — not inspired. Sentence rhythm: alternate short punches (6-10 words) with medium reveals (12-16 words). Use ellipses (...) for natural pauses. Use em-dashes (—) for emphasis. Write ONLY the exact words the narrator speaks. No structural labels. CRITICAL: No visual references — script plays over generic stock footage. Every sentence works with eyes closed. BANNED: very, basically, essentially, interesting, fascinating, remarkable, amazing, incredible. Use active verbs: collapses, tears, bends, swallows, fires, explodes, outweighs, orbits, decays."
+  }
+}

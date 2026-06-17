@@ -11,15 +11,21 @@ class ConfigError(RuntimeError):
 class ConfigLoader:
     def __init__(self, repo_root: Path):
         self.repo_root = repo_root
-        self.channels_dir = repo_root / "config" / "channels"
+        self.channels_dir = repo_root / "channels"
+
+    def channel_dir(self, channel_name: str) -> Path:
+        return self.channels_dir / channel_name
 
     def list_channels(self) -> list[str]:
         if not self.channels_dir.exists():
             return []
-        return sorted(path.stem for path in self.channels_dir.glob("*.json"))
+        return sorted(
+            p.name for p in self.channels_dir.iterdir()
+            if p.is_dir() and (p / "config.json").exists()
+        )
 
     def load_channel(self, channel_name: str) -> dict:
-        path = self.channels_dir / f"{channel_name}.json"
+        path = self.channel_dir(channel_name) / "config.json"
         if not path.exists():
             raise ConfigError(f"Missing channel config: {path}")
         try:
@@ -50,7 +56,7 @@ class ConfigLoader:
     def _validate_channel_config(self, channel_name: str, config: dict) -> None:
         required = [
             "channel_name", "youtube", "content_strategies",
-            "prompt_profile", "paths", "rl_profile",
+            "prompt_profile", "rl_profile",
         ]
         missing = [key for key in required if key not in config]
         if missing:

@@ -19,11 +19,18 @@ dependencies = [
     "google-api-core>=2.24.1",
     "schedule>=1.2.2",
     "pytz>=2024.1",
+    "pydub>=0.25.1",
+    "audioop-lts>=0.2.1; python_version >= '3.13'",
 ]
 
 [project.optional-dependencies]
 dev = [
     "pytest>=8.1.1",
+]
+provision = [
+    "playwright>=1.40.0",
+    "google-cloud-resource-manager>=1.12.0",
+    "google-cloud-service-usage>=1.10.0",
 ]
 
 [project.scripts]

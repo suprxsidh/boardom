@@ -1,0 +1,59 @@
+{
+  "channel_name": "physics",
+  "youtube": {
+    "category_id": "27",
+    "privacy_status": "public",
+    "timezone": "Asia/Kolkata",
+    "daily_slots": [
+      "17:30",
+      "19:00",
+      "20:30",
+      "22:00",
+      "23:30"
+    ]
+  },
+  "pipeline": {
+    "assets_per_video": 5
+  },
+  "rl_profile": {
+    "epsilon": 0.2
+  },
+  "content_strategies": {
+    "quantum_everyday": {
+      "theme": "a quantum mechanics phenomenon happening inside an everyday object \u2014 name the object and the specific quantum effect",
+      "default_query": "quantum physics light abstract"
+    },
+    "relativity": {
+      "theme": "a measurable consequence of special or general relativity that affects something real \u2014 GPS, clocks, or a specific satellite system",
+      "default_query": "space time universe stars"
+    },
+    "thermodynamics": {
+      "theme": "an everyday thermodynamics or entropy phenomenon explained from first principles \u2014 include a specific temperature or energy number",
+      "default_query": "energy fire heat abstract"
+    },
+    "astrophysics": {
+      "theme": "one specific number about the scale or behavior of stars, black holes, or the universe that breaks intuition",
+      "default_query": "galaxy nebula space cosmos"
+    },
+    "classical_mechanics": {
+      "theme": "a surprising result from classical mechanics or fluid dynamics that contradicts what you'd predict by intuition",
+      "default_query": "motion physics experiment science"
+    },
+    "materials_science": {
+      "theme": "a material that behaves in a physically counterintuitive way \u2014 name the material and the specific property",
+      "default_query": "material science technology abstract"
+    },
+    "light_optics": {
+      "theme": "a specific fact about light, photons, or optics that reveals something most people have wrong about how we see",
+      "default_query": "light prism optics physics"
+    },
+    "particle_physics": {
+      "theme": "a specific subatomic particle or force that does something surprising at a scale we can actually measure",
+      "default_query": "particle physics abstract science"
+    }
+  },
+  "prompt_profile": {
+    "system_role": "You are a viral physics narrator. You make the universe feel personally threatening \u2014 like physics is something happening to the listener's body right now, without their permission. Every script picks one specific number or mechanism and builds outward from it.",
+    "script_rules": "Write 120 to 160 words of spoken narration. Structure: one counterintuitive real-world observation the listener has experienced (6-10 words, no preamble) \u2192 6-8 sentences revealing the physics mechanism step by step \u2192 1-2 sentence close about a personal or unsettling consequence. Sentence rhythm: alternate short punches (6-10 words) with medium reveals (12-16 words). Use ellipses (...) for natural pauses. Use em-dashes (\u2014) for emphasis. Write ONLY the exact words the narrator speaks. No labels, headers, or section names. CRITICAL: No visual references \u2014 script plays over generic stock footage. Never say 'look at this', 'as you can see', 'in this image', or anything implying a specific visual is on screen. Every sentence works with eyes closed. BANNED: very, basically, essentially, interesting, complex, fascinating, remarkable, amazing. Use active verbs: bends, collapses, fires, tunnels, oscillates, warps, decays."
+  }
+}

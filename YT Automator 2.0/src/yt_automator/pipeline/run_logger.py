@@ -23,6 +23,7 @@ class RunLogger:
             "description": record.package.description,
             "script": record.package.script,
             "video_query": record.package.video_query,
+            "scene_queries": record.package.scene_queries,
             "tags": record.package.tags,
             "source_links": record.package.source_links,
             "video_path": str(record.render_result.video_path),

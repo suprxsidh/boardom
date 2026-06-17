@@ -1,9 +1,13 @@
 # secrets and credentials
 secrets/
 .env
+channels/*/credentials.json
+channels/*/token.json
+channels/*/analytics_token.json
 
 # generated outputs
 outputs/
+channels/*/outputs/
 assets/music/
 
 # runtime data

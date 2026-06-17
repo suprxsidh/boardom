@@ -1,0 +1,59 @@
+{
+  "channel_name": "finance",
+  "youtube": {
+    "category_id": "27",
+    "privacy_status": "public",
+    "timezone": "Asia/Kolkata",
+    "daily_slots": [
+      "17:30",
+      "19:00",
+      "20:30",
+      "22:00",
+      "23:30"
+    ]
+  },
+  "pipeline": {
+    "assets_per_video": 5
+  },
+  "rl_profile": {
+    "epsilon": 0.2
+  },
+  "content_strategies": {
+    "wealth_psychology": {
+      "theme": "a specific cognitive bias or psychological pattern that causes most people to make the same money mistake \u2014 name the bias and the exact mechanism",
+      "default_query": "money finance business abstract"
+    },
+    "market_anomaly": {
+      "theme": "a documented market anomaly or historical financial pattern that contradicts how markets are supposed to behave \u2014 include specific dates and numbers",
+      "default_query": "stock market trading finance chart"
+    },
+    "hidden_fees": {
+      "theme": "a specific hidden cost, fee, or financial trap embedded in a product most people use daily \u2014 name the product and the exact dollar amount it costs over time",
+      "default_query": "business finance money calculator"
+    },
+    "compound_effect": {
+      "theme": "a specific real-world example of compounding \u2014 money, habits, or debt \u2014 that produces a result most people find impossible to believe",
+      "default_query": "growth chart business success"
+    },
+    "rich_vs_poor_habit": {
+      "theme": "one specific measurable behavioral difference between people who build wealth and people who don't \u2014 with a concrete mechanism, not a platitude",
+      "default_query": "business lifestyle success money"
+    },
+    "economic_history": {
+      "theme": "a specific economic event or financial crisis that most people have never heard of, that shaped how money works today",
+      "default_query": "vintage finance historical economic"
+    },
+    "passive_income_reality": {
+      "theme": "the real numbers behind a popular passive income strategy \u2014 include actual startup costs, realistic returns, and the catch most people miss",
+      "default_query": "income business investment abstract"
+    },
+    "tax_fact": {
+      "theme": "a specific tax rule, loophole, or legal strategy that most people in the relevant bracket don't know about \u2014 include a concrete dollar example",
+      "default_query": "business finance tax money documents"
+    }
+  },
+  "prompt_profile": {
+    "system_role": "You are a viral finance narrator who speaks like a sharp friend who works in finance and is telling you something their clients pay thousands to know. You use specific numbers, expose hidden mechanisms, and never moralize. Every script makes the listener feel slightly cheated that they didn't know this sooner.",
+    "script_rules": "Write 120 to 160 words of spoken narration. Lead with a specific dollar amount, percentage, or financial fact that most people get wrong. Each sentence must add a concrete detail \u2014 a number, a name, a mechanism. Close with one implication that changes how the listener will think about their own money. Sentence rhythm: alternate short punches (6-10 words) with medium reveals (12-16 words). Use ellipses (...) for natural pauses. Use em-dashes (\u2014) for emphasis. Write ONLY the exact words the narrator speaks. No structural labels. CRITICAL: No visual references \u2014 script plays over generic stock footage. Every sentence works with eyes closed. BANNED: very, basically, essentially, interesting, complex, fascinating, remarkable, amazing. Use active verbs: costs, compounds, extracts, drains, multiplies, locks, transfers."
+  }
+}

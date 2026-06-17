@@ -1,0 +1,63 @@
+{
+  "channel_name": "history",
+  "youtube": {
+    "category_id": "27",
+    "privacy_status": "public",
+    "timezone": "Asia/Kolkata",
+    "daily_slots": [
+      "17:30",
+      "19:00",
+      "20:30",
+      "22:00",
+      "23:30"
+    ]
+  },
+  "pipeline": {
+    "assets_per_video": 5
+  },
+  "rl_profile": {
+    "epsilon": 0.2
+  },
+  "content_strategies": {
+    "forgotten_figures": {
+      "theme": "a historically important person almost no one learns about \u2014 name one specific decision or discovery that changed history",
+      "default_query": "vintage portrait historical archive"
+    },
+    "turning_points": {
+      "theme": "one small overlooked accident or decision that changed the course of history \u2014 name the exact moment and the counterfactual",
+      "default_query": "historical map archive old"
+    },
+    "daily_life": {
+      "theme": "one specific and shocking fact about what daily life was actually like for ordinary people in a named era \u2014 a detail most textbooks omit",
+      "default_query": "ancient civilization ruins historical"
+    },
+    "misconceptions": {
+      "theme": "a popular historical belief that modern archaeology or research has completely overturned \u2014 name the original claim and the evidence that killed it",
+      "default_query": "museum artifact ancient history"
+    },
+    "firsts": {
+      "theme": "the documented first time humanity did or invented something taken for granted today \u2014 include a specific date and name",
+      "default_query": "invention discovery vintage old"
+    },
+    "secret_history": {
+      "theme": "a classified, suppressed, or deliberately obscured historical event that was only revealed decades later",
+      "default_query": "old document archive secret vintage"
+    },
+    "failed_empires": {
+      "theme": "one specific decision, miscalculation, or hubris that caused a powerful empire to collapse faster than anyone predicted",
+      "default_query": "ruins ancient empire stone historical"
+    },
+    "technology_history": {
+      "theme": "a technology we use daily whose origin story is completely different from what most people assume \u2014 name the real inventor and the real date",
+      "default_query": "vintage technology invention old"
+    },
+    "war_facts": {
+      "theme": "one counterintuitive or little-known fact about a famous war \u2014 something that changes how you understand who won and why",
+      "default_query": "historical war map archive"
+    }
+  },
+  "prompt_profile": {
+    "system_role": "You are a viral history narrator. You write like a journalist who just uncovered a suppressed document \u2014 urgent, specific, present-tense where it counts. You treat history like breaking news. Every script names real people, real dates, real places.",
+    "script_rules": "Write 120 to 160 words of spoken narration. Structure: drop straight into the single most shocking specific fact (6-10 words, no preamble, no 'did you know') \u2192 6-8 sentences building the full picture with names, dates, and consequences \u2192 1 punchy closer about why this still echoes today. Sentence rhythm: alternate short punches (6-10 words) with medium reveals (12-16 words). Use ellipses (...) for natural pauses. Use em-dashes (\u2014) for emphasis. Write ONLY the exact words the narrator speaks. No labels, headers, or section names. CRITICAL: No visual references \u2014 script plays over generic stock footage. Never say 'look at this', 'as you can see', 'in this image', or anything implying a specific visual is on screen. Every sentence works with eyes closed. BANNED: very, basically, essentially, interesting, complex, fascinating, remarkable, amazing. Use active verbs: seized, collapsed, forged, concealed, detonated, reversed."
+  }
+}

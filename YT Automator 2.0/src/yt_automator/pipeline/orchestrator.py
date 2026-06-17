@@ -4,6 +4,7 @@ import logging
 import random
 import shutil
 import subprocess
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -11,6 +12,7 @@ from yt_automator.config import ConfigLoader
 from yt_automator.models import PublishRecord
 from yt_automator.optimizer.bandit_optimizer import BanditOptimizer
 from yt_automator.pipeline.content_generator import ContentGenerator
+from yt_automator.pipeline.thumbnail_generator import ThumbnailGenerator
 from yt_automator.pipeline.media_sourcer import MediaSourcer
 from yt_automator.pipeline.qa import QualityGate
 from yt_automator.pipeline.run_logger import RunLogger
@@ -19,6 +21,7 @@ from yt_automator.pipeline.tts_engine import TTSEngine, run_async
 from yt_automator.pipeline.video_renderer import VideoRenderer
 from yt_automator.pipeline.youtube_client import YouTubeClient
 from yt_automator.providers.nasa_provider import NasaProvider
+from yt_automator.providers.pexels_provider import PexelsProvider
 from yt_automator.providers.pixabay_provider import PixabayProvider
 from yt_automator.providers.wikimedia_provider import WikimediaProvider
 from yt_automator.secrets import SecretManager
@@ -88,33 +91,36 @@ class PipelineOrchestrator:
             print("[WARN] No GEMINI_API_KEY or OLLAMA_MODEL set (fallback scripts used)")
             warnings += 1
 
+        if self.secret_manager.get("PEXELS_API_KEY"):
+            print("[OK] PEXELS_API_KEY is set (video backgrounds enabled)")
+        else:
+            print("[WARN] PEXELS_API_KEY not set (falling back to Pixabay/Wikimedia images)")
+            warnings += 1
+
         if self.secret_manager.get("PIXABAY_API_KEY"):
             print("[OK] PIXABAY_API_KEY is set")
         else:
-            print("[WARN] PIXABAY_API_KEY not set (Wikimedia fallback will be used)")
+            print("[INFO] PIXABAY_API_KEY not set (Wikimedia fallback will be used)")
+            warnings += 1
+
+        music_files = list((self.repo_root / "assets" / "music").glob("*.mp3"))
+        if music_files:
+            print(f"[OK] Found {len(music_files)} shared music file(s)")
+        else:
+            print("[WARN] No music files found in assets/music/; silent fallback used")
             warnings += 1
 
         for channel in channels:
-            cfg = self.get_channel_config(channel)
-            creds_path, token_path = self._resolve_youtube_paths(cfg)
+            ch_dir = self.config_loader.channel_dir(channel)
+            creds_path = ch_dir / "credentials.json"
+            token_path = ch_dir / "token.json"
             if creds_path.exists():
-                print(f"[OK] {channel}: credentials file found")
+                print(f"[OK] {channel}: credentials.json found")
             else:
                 print(f"[FAIL] {channel}: missing credentials at {creds_path}")
                 errors += 1
             if not token_path.exists():
-                print(f"[INFO] {channel}: token missing (created on first auth)")
-
-            music_list = cfg["paths"]["music_files"]
-            found = [
-                n for n in music_list
-                if (self.repo_root / "assets" / "music" / n).exists()
-            ]
-            if found:
-                print(f"[OK] {channel}: found {len(found)} music file(s)")
-            else:
-                print(f"[WARN] {channel}: no music files found; silent fallback used")
-                warnings += 1
+                print(f"[INFO] {channel}: token.json missing (created on first auth)")
 
         print(f"[INFO] Doctor summary: errors={errors} warnings={warnings}")
 
@@ -130,7 +136,8 @@ class PipelineOrchestrator:
         dry_run: bool,
     ) -> None:
         cfg = self.config_loader.load_channel(channel_name)
-        history = self._load_topic_history(cfg)
+        ch_dir = self.config_loader.channel_dir(channel_name)
+        history = self._load_topic_history(ch_dir)
         schedule_times: list[str] = []
         if schedule:
             schedule_times = generate_publish_schedule(
@@ -159,7 +166,10 @@ class PipelineOrchestrator:
 
         media_sourcer = self._build_media_sourcer(channel_name)
         renderer = VideoRenderer()
-        creds_path, token_path = self._resolve_youtube_paths(cfg)
+        thumbnail_gen = ThumbnailGenerator()
+        ch_dir = self.config_loader.channel_dir(channel_name)
+        creds_path = ch_dir / "credentials.json"
+        token_path = ch_dir / "token.json"
         youtube_client = YouTubeClient(creds_path, token_path)
 
         for index in range(count):
@@ -178,29 +188,50 @@ class PipelineOrchestrator:
                 if not valid:
                     _log.warning("[%s] QA issues: %s", channel_name, issues)
 
-                run_dir = self._new_run_dir(channel_name, package.topic)
+                run_dir = self._new_run_dir(ch_dir, package.topic)
                 audio_path = run_dir / "voice.mp3"
                 subtitle_path = run_dir / "subs.ass"
                 video_path = run_dir / "final.mp4"
 
                 voice = random.choice(voices)
-                run_async(tts.synthesize(package.script, audio_path, voice=voice))
+
+                # TTS and Pexels clip fetching are independent — run in parallel
+                with ThreadPoolExecutor(max_workers=2) as pool:
+                    tts_future = pool.submit(
+                        run_async, tts.synthesize(package.script, audio_path, voice=voice)
+                    )
+                    base_clips = cfg["pipeline"]["assets_per_video"]
+                    num_clips = random.randint(max(3, base_clips - 1), min(7, base_clips + 1))
+                    assets_future = pool.submit(
+                        media_sourcer.fetch_assets,
+                        package.video_query,
+                        run_dir / "assets",
+                        num_clips,
+                        package.scene_queries or None,
+                    )
+                    tts_future.result()
+                    assets = assets_future.result()
+
                 segments = subtitle_engine.transcribe_segments(audio_path)
+                segments = subtitle_engine.correct_against_script(segments, package.script)
                 subtitle_engine.write_ass(segments, subtitle_path)
+                drawtext = subtitle_engine.build_drawtext_filter(segments)
 
-                assets = media_sourcer.fetch_assets(
-                    package.video_query,
-                    run_dir / "assets",
-                    max_assets=cfg["pipeline"]["assets_per_video"],
-                )
-
-                music_path = self._resolve_music_file(cfg)
+                voice_duration = self._probe_duration(audio_path)
+                music_path = self._resolve_music_file(min_duration=voice_duration)
                 render_result = renderer.render(
                     assets=assets,
                     voice_audio_path=audio_path,
                     subtitle_path=subtitle_path,
                     music_path=music_path,
                     output_path=video_path,
+                    drawtext_filter=drawtext,
+                )
+
+                thumbnail_path = thumbnail_gen.generate(
+                    video_path=render_result.video_path,
+                    title=package.title,
+                    run_dir=run_dir,
                 )
 
                 publish_at = schedule_times[index] if schedule and index < len(schedule_times) else None
@@ -213,6 +244,7 @@ class PipelineOrchestrator:
                     privacy_status=cfg["youtube"]["privacy_status"],
                     publish_at=publish_at,
                     dry_run=dry_run,
+                    thumbnail_path=thumbnail_path,
                 )
 
                 record = PublishRecord(
@@ -227,7 +259,9 @@ class PipelineOrchestrator:
 
                 if upload_result.success:
                     _log.info("[%s] Uploaded: %s", channel_name, upload_result.video_url)
-                    self._append_topic_history(cfg, package.topic)
+                    if not dry_run:
+                        self._append_topic_history(ch_dir, package.topic)
+                        self._cleanup_run_dir(run_dir)
                     history.append(package.topic)
                 else:
                     _log.error("[%s] Upload failed: %s", channel_name, upload_result.error)
@@ -238,6 +272,14 @@ class PipelineOrchestrator:
                     exc_info=True,
                 )
                 continue
+
+    def run_analytics(self) -> None:
+        from yt_automator.analytics.analytics_poller import AnalyticsPoller
+        from yt_automator.analytics.reward import RewardCalculator
+        poller = AnalyticsPoller(self.repo_root)
+        poller.poll_all_channels()
+        calculator = RewardCalculator(self.repo_root, self.optimizer)
+        calculator.process_all_collected()
 
     def record_manual_reward(self, channel: str, arm: str, reward: float) -> None:
         self.optimizer.record_reward(channel, arm, reward)
@@ -252,6 +294,7 @@ class PipelineOrchestrator:
     def _build_media_sourcer(self, channel_name: str) -> MediaSourcer:
         providers = []
         pixabay_key = self.secret_manager.get("PIXABAY_API_KEY")
+        pexels_key = self.secret_manager.get("PEXELS_API_KEY")
         for provider_cfg in self.media_source_settings.get("providers", []):
             if not provider_cfg.get("enabled", False):
                 continue
@@ -259,7 +302,9 @@ class PipelineOrchestrator:
             if channels and channel_name.lower() not in [c.lower() for c in channels]:
                 continue
             name = provider_cfg.get("name")
-            if name == "pixabay":
+            if name == "pexels":
+                providers.append(PexelsProvider(pexels_key))
+            elif name == "pixabay":
                 providers.append(PixabayProvider(pixabay_key))
             elif name == "wikimedia":
                 providers.append(WikimediaProvider())
@@ -269,21 +314,19 @@ class PipelineOrchestrator:
             providers.append(WikimediaProvider())
         return MediaSourcer(providers)
 
-    def _resolve_music_file(self, cfg: dict) -> Path:
-        music_files = cfg["paths"]["music_files"]
-        candidates = [
-            self.repo_root / "assets" / "music" / name
-            for name in music_files
-            if (self.repo_root / "assets" / "music" / name).exists()
-        ]
+    def _resolve_music_file(self, min_duration: float = 0.0) -> Path:
+        music_dir = self.repo_root / "assets" / "music"
+        candidates = [p for p in music_dir.glob("*.mp3") if p.is_file()]
         if not candidates:
             fallback = self.repo_root / "assets" / "music" / "fallback_silent.mp3"
             fallback.parent.mkdir(parents=True, exist_ok=True)
             if not fallback.exists():
                 try:
+                    import shutil as _shutil
+                    _ffmpeg = _shutil.which("ffmpeg") or "/opt/homebrew/bin/ffmpeg"
                     subprocess.run(
                         [
-                            "ffmpeg", "-y", "-f", "lavfi",
+                            _ffmpeg, "-y", "-f", "lavfi",
                             "-i", "anullsrc=r=44100:cl=mono",
                             "-t", "8", "-q:a", "9", "-acodec", "libmp3lame",
                             str(fallback),
@@ -305,17 +348,43 @@ class PipelineOrchestrator:
                 "No music files found and could not create silent fallback. "
                 "Place MP3 files in assets/music/ or install ffmpeg."
             )
+
+        if min_duration > 0:
+            durations = {p: self._probe_duration(p) for p in candidates}
+            long_enough = [p for p, d in durations.items() if d >= min_duration]
+            if long_enough:
+                return random.choice(long_enough)
+            # Fallback: pick the longest available track
+            _log.warning(
+                "No music track longer than %.1fs — using longest available", min_duration
+            )
+            return max(candidates, key=lambda p: durations[p])
+
         return random.choice(candidates)
 
-    def _resolve_youtube_paths(self, cfg: dict) -> tuple[Path, Path]:
-        creds_file = cfg["youtube"]["credentials_file"]
-        token_file = cfg["youtube"]["token_file"]
-        creds_path = self.repo_root / "secrets" / "youtube" / creds_file
-        token_path = self.repo_root / "secrets" / "youtube" / token_file
-        return creds_path, token_path
+    @staticmethod
+    def _probe_duration(path: Path) -> float:
+        import shutil as _shutil
+        ffprobe = _shutil.which("ffprobe") or "/opt/homebrew/bin/ffprobe"
+        try:
+            out = subprocess.check_output(
+                [ffprobe, "-v", "error", "-show_entries", "format=duration",
+                 "-of", "default=noprint_wrappers=1:nokey=1", str(path)],
+                stderr=subprocess.DEVNULL,
+            ).decode().strip()
+            return float(out)
+        except Exception:
+            return 0.0
 
-    def _load_topic_history(self, cfg: dict) -> list[str]:
-        history_path = self.repo_root / cfg["paths"]["topic_history"]
+    def _cleanup_run_dir(self, run_dir: Path) -> None:
+        try:
+            shutil.rmtree(run_dir)
+            _log.info("Cleaned up local files: %s", run_dir.name)
+        except Exception as exc:
+            _log.warning("Could not clean up run dir %s: %s", run_dir, exc)
+
+    def _load_topic_history(self, ch_dir: Path) -> list[str]:
+        history_path = ch_dir / "topics.txt"
         if not history_path.exists():
             return []
         try:
@@ -328,15 +397,14 @@ class PipelineOrchestrator:
             _log.warning("Could not load topic history: %s", exc)
             return []
 
-    def _append_topic_history(self, cfg: dict, topic: str) -> None:
-        history_path = self.repo_root / cfg["paths"]["topic_history"]
-        history_path.parent.mkdir(parents=True, exist_ok=True)
+    def _append_topic_history(self, ch_dir: Path, topic: str) -> None:
+        history_path = ch_dir / "topics.txt"
         with history_path.open("a", encoding="utf-8") as handle:
             handle.write(topic + "\n")
 
-    def _new_run_dir(self, channel: str, topic: str) -> Path:
+    def _new_run_dir(self, ch_dir: Path, topic: str) -> Path:
         timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
         slug = slugify(topic)[:45]
-        path = self.repo_root / "outputs" / channel / f"{timestamp}_{slug}"
+        path = ch_dir / "outputs" / f"{timestamp}_{slug}"
         path.mkdir(parents=True, exist_ok=True)
         return path
