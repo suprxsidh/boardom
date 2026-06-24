@@ -32,6 +32,7 @@ export default function DrawingToolbar({ editor }: Props) {
   return (
     <aside className="flex flex-col items-center gap-3 w-14 bg-neutral-900 py-3 rounded-xl shadow-lg">
       {/* Tools */}
+      <button onClick={() => editor.setCurrentTool('select')} title="Select" className="p-2 hover:bg-neutral-700 rounded-lg text-white text-xl">↖</button>
       <button onClick={() => editor.setCurrentTool('draw')} title="Draw" className="p-2 hover:bg-neutral-700 rounded-lg text-white text-xl">✏️</button>
       <button onClick={() => editor.setCurrentTool('eraser')} title="Eraser" className="p-2 hover:bg-neutral-700 rounded-lg text-white text-xl">🧹</button>
       <button onClick={() => editor.setCurrentTool('text')} title="Text" className="p-2 hover:bg-neutral-700 rounded-lg text-white text-xl">T</button>
