@@ -77,4 +77,16 @@ describe('useCanvasSync', () => {
     act(() => result.current.applyRemoteData(msg))
     expect(mockRemove).toHaveBeenCalledWith(['shape:1'])
   })
+
+  it('applyRemoteData updates presence for cursor messages', () => {
+    const { result } = renderHook(() =>
+      useCanvasSync({ editor: mockEditor as any, sendData: vi.fn(), remoteUserId: 'remote' })
+    )
+
+    const msg = JSON.stringify({ type: 'cursor', x: 50, y: 100 })
+
+    act(() => result.current.applyRemoteData(msg))
+    expect(mockMergeRemoteChanges).toHaveBeenCalled()
+    expect(mockPut).toHaveBeenCalled()
+  })
 })

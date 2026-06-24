@@ -28,9 +28,7 @@ export function useCanvasSync({ editor, sendData, remoteUserId }: UseCanvasSyncO
     if (!editor) return
 
     return editor.store.listen(
-      ({ changes, source }: TLStoreEventInfo) => {
-        if (source !== 'user') return
-
+      ({ changes }: TLStoreEventInfo) => {
         const { added, updated, removed } = changes
         const msg: CanvasMessage = {
           type: 'store-change',
