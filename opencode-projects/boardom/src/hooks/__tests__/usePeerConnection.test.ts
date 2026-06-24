@@ -66,4 +66,22 @@ describe('usePeerConnection', () => {
     act(() => result.current.sendData('hello'))
     expect(mockSend).toHaveBeenCalledWith('hello')
   })
+
+  it('calls destroy on unmount', () => {
+    const { unmount } = renderHook(() =>
+      usePeerConnection({ isInitiator: false, onSignal: vi.fn(), onConnect: vi.fn(), onData: vi.fn(), onClose: vi.fn() })
+    )
+    unmount()
+    expect(mockDestroy).toHaveBeenCalledOnce()
+  })
+
+  it('sendData is no-op when peer is disconnected', () => {
+    const { result } = renderHook(() =>
+      usePeerConnection({ isInitiator: false, onSignal: vi.fn(), onConnect: vi.fn(), onData: vi.fn(), onClose: vi.fn() })
+    )
+    mockPeerInstance.connected = false
+    act(() => result.current.sendData('hello'))
+    expect(mockSend).not.toHaveBeenCalled()
+    mockPeerInstance.connected = true
+  })
 })
