@@ -14,7 +14,7 @@ export default function CanvasPage() {
   const [editor, setEditor] = useState<Editor | null>(null)
   const [partnerLeft, setPartnerLeft] = useState(false)
 
-  const peer = getSession().peer
+  const peer = getSession()?.peer ?? null
 
   const sendData = useCallback((data: string) => {
     if (peer?.connected) peer.send(data)
