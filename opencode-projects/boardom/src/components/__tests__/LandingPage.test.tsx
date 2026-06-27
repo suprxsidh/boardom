@@ -8,7 +8,7 @@ vi.mock('next/navigation', () => ({ useRouter: () => ({ push: mockPush }) }))
 describe('LandingPage', () => {
   it('renders wordmark', () => {
     render(<LandingPage />)
-    expect(screen.getByText('Boardom')).toBeInTheDocument()
+    expect(screen.getByText('Boredroom')).toBeInTheDocument()
   })
 
   it('Start button disabled until 18+ checkbox checked', () => {

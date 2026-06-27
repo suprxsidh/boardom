@@ -9,7 +9,7 @@ export default function LandingPage() {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen gap-8 bg-zinc-950 text-white">
-      <h1 className="text-5xl font-bold tracking-tight">Boardom</h1>
+      <h1 className="text-5xl font-bold tracking-tight">Boredroom</h1>
       <p className="text-zinc-400 text-lg">Two strangers. One canvas.</p>
       <label className="flex items-center gap-3 cursor-pointer select-none">
         <input
